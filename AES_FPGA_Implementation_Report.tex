@@ -35,7 +35,7 @@
 \thispagestyle{empty}
 
 \begin{abstract}
-This paper presents a highly optimized FPGA implementation of the Advanced Encryption Standard (AES-128) cipher targeting resource-constrained embedded systems. The design incorporates three key innovations: on-the-fly key expansion reducing storage by 81.8\%, decomposition matrix optimization for MixColumns resource sharing achieving 34.9\% area savings, and dual S-box architecture for differential power analysis (DPA) resistance. Implemented on the Xilinx Artix-7 XC7A100T FPGA, the design achieves 100 MHz operation with only 2,132 LUTs (3.36\% utilization), 2,043 registers (1.61\%), zero Block RAM usage, 75 mW dynamic power consumption, and 1.45 Gbps throughput. Comprehensive verification using NIST FIPS-197 test vectors demonstrates 100\% functional correctness. The balanced optimization across area, power, and performance makes this implementation ideal for IoT devices, secure communications, and low-power embedded security applications.
+This paper presents a highly optimized FPGA implementation of the Advanced Encryption Standard (AES-128) cipher targeting resource-constrained embedded systems. The design incorporates three key innovations: on-the-fly key expansion reducing storage by 81.8\%, decomposition matrix optimization for MixColumns resource sharing achieving 34.9\% area savings, and dual S-box architecture for differential power analysis (DPA) resistance. Implemented on the Xilinx Artix-7 XC7A100T FPGA, the design achieves 100 MHz operation with only 2,132 LUTs (3.36\% utilization), 2,043 registers (1.61\%), zero Block RAM usage, 172 mW total power consumption (1.72 nJ/bit energy efficiency), and 100-152 Mbps throughput. Comprehensive verification using NIST FIPS-197 test vectors demonstrates 100\% functional correctness. The balanced optimization across area, power, and performance makes this implementation ideal for IoT devices, secure communications, and low-power embedded security applications.
 \end{abstract}
 
 \newpage
@@ -860,8 +860,8 @@ BRAM Blocks & 8 & 24 & 0 & 0 & 4 & 0 & \textbf{0} \\ \hline
 Freq (MHz) & 165 & 312 & 98 & 75 & 50 & 110 & 100 \\ \hline
 Latency (cycles) & 11 & 11 & 95 & 112 & 98 & 87 & 128 \\ \hline
 Throughput (Mbps) & 2,110 & 39,900 & 1,250 & 960 & 640 & 1,410 & \textbf{100}$^*$ \\ \hline
-Power (mW) & 245 & 856 & 156 & 89 & 47 & 178 & \textbf{75} \\ \hline
-Energy (nJ/bit) & 2.89 & 5.35 & 3.11 & 2.31 & 1.83 & 3.15 & \textbf{1.87} \\ \hline
+Power (mW) & 245 & 856 & 156 & 89 & 47 & 178 & \textbf{172} \\ \hline
+Energy (nJ/bit) & 2.89 & 5.35 & 3.11 & 2.31 & 1.83 & 3.15 & \textbf{1.72} \\ \hline
 LUT Efficiency & 0.36 & 3.20 & 0.37 & 0.45 & 0.22 & 0.47 & \textbf{0.047}$^\dagger$ \\ \hline
 \multicolumn{8}{l}{$^*$Single-block throughput; continuous operation: 152 Mbps (see Section 3.6)} \\
 \multicolumn{8}{l}{$^\dagger$LUT Efficiency = Throughput (Gbps) / LUTs $\times$ 1000} \\
@@ -911,17 +911,19 @@ Unlike prior works focusing on single-objective optimization (speed OR area OR p
         \item Column-wise processing reduces parallelism (4$\times$ time-multiplexing)
     \end{itemize}
 
-    \item \textbf{Lowest power consumption (75 mW):}
+    \item \textbf{Competitive power consumption (172 mW total):}
     \begin{itemize}
         \item Sequential processing reduces simultaneous switching activity
-        \item Zero BRAM avoids static leakage current
+        \item Zero BRAM avoids static RAM leakage current
         \item Optimized critical path enables lower voltage operation potential
+        \item Lower than high-speed implementations [1,2,6] by 1.0-5.0$\times$
     \end{itemize}
 
-    \item \textbf{Best energy efficiency (1.87 nJ/bit):}
+    \item \textbf{Excellent energy efficiency (1.72 nJ/bit):}
     \begin{itemize}
-        \item Second-best among all implementations
-        \item Only Patel et al. [5] achieves lower (1.83 nJ/bit) but sacrifices throughput
+        \item Third-best among all implementations
+        \item Only Patel et al. [5] (1.83 nJ/bit) and Hassan et al. [4] (2.31 nJ/bit) achieve comparable efficiency
+        \item Significantly better than high-speed designs [1,2] at 2.89-5.35 nJ/bit
     \end{itemize}
 
     \item \textbf{Only design with DPA resistance:}
@@ -1238,7 +1240,9 @@ Airflow & 250 LFM \\ \hline
 \begin{tabular}{|l|r|}
 \hline
 \textbf{Metric} & \textbf{Value} \\ \hline
+Total Power (Dynamic + Static) & 172 mW \\ \hline
 Dynamic Power & 75 mW \\ \hline
+Static Power & 97 mW \\ \hline
 Operating Frequency & 100 MHz \\ \hline
 Block Size & 128 bits \\ \hline
 Cycles per Encryption & 128 cycles \\ \hline
@@ -1247,10 +1251,10 @@ Time per Encryption & 1.28 μs \\ \hline
 Time per Decryption & 1.78 μs \\ \hline
 Throughput (Encryption) & 100 Mbps \\ \hline
 Throughput (Decryption) & 71.91 Mbps \\ \hline
-\textbf{Energy per Bit (Encryption)} & \textbf{1.87 nJ/bit} \\ \hline
-Energy per Bit (Decryption) & 2.61 nJ/bit \\ \hline
-Energy per Block (128-bit Enc.) & 239 nJ \\ \hline
-Energy per Block (128-bit Dec.) & 334 nJ \\ \hline
+\textbf{Energy per Bit (Encryption)} & \textbf{1.72 nJ/bit} \\ \hline
+Energy per Bit (Decryption) & 2.39 nJ/bit \\ \hline
+Energy per Block (128-bit Enc.) & 220 nJ \\ \hline
+Energy per Block (128-bit Dec.) & 306 nJ \\ \hline
 Encryptions per Second & 781,250 \\ \hline
 Decryptions per Second & 561,800 \\ \hline
 \end{tabular}
@@ -1258,10 +1262,10 @@ Decryptions per Second & 561,800 \\ \hline
 
 \textbf{Energy Efficiency Calculation:}
 \begin{equation}
-Energy/bit = \frac{Dynamic\ Power \times Time\ per\ Block}{Block\ Size}
+Energy/bit = \frac{Total\ Power \times Time\ per\ Block}{Block\ Size} = \frac{Total\ Power}{Throughput}
 \end{equation}
 \begin{equation}
-Energy/bit_{enc} = \frac{0.075\ W \times 1.28\ \mu s}{128\ bits} = 1.875\ nJ/bit
+Energy/bit_{enc} = \frac{0.172\ W \times 1.28\ \mu s}{128\ bits} = \frac{0.172\ W}{100\ Mbps} = 1.72\ nJ/bit
 \end{equation}
 
 \subsection{Comparison with Literature Estimates}
@@ -1360,8 +1364,8 @@ Continuous Decryption & 95.52 Mbps \\ \hline
 Dynamic Power & 75 mW \\ \hline
 Static Power & 97 mW \\ \hline
 Total On-Chip Power & 172 mW \\ \hline
-\textbf{Energy Efficiency (Enc.)} & \textbf{1.87 nJ/bit} \\ \hline
-Energy Efficiency (Dec.) & 2.61 nJ/bit \\ \hline
+\textbf{Energy Efficiency (Enc.)} & \textbf{1.72 nJ/bit} \\ \hline
+Energy Efficiency (Dec.) & 2.39 nJ/bit \\ \hline
 Junction Temperature & 25.8°C (0.8°C rise) \\ \hline
 \multicolumn{2}{|c|}{\textit{\textbf{Verification}}} \\ \hline
 NIST FIPS-197 Compliance & 100\% (10/10 tests pass) \\ \hline
@@ -1378,7 +1382,7 @@ This project successfully developed and demonstrated a highly optimized FPGA imp
 \begin{enumerate}
     \item \textbf{Resource Efficiency:} Achieved lowest LUT utilization (2,132 LUTs, 3.36\%) among compared implementations through synergistic combination of on-the-fly key expansion (81.8\% storage reduction) and decomposition matrix optimization (34.9\% MixColumns area savings).
 
-    \item \textbf{Power Efficiency:} Demonstrated 75 mW dynamic power consumption with 1.87 nJ/bit energy efficiency, making the design suitable for battery-operated IoT devices and energy-constrained embedded systems.
+    \item \textbf{Power Efficiency:} Demonstrated 172 mW total power consumption with 1.72 nJ/bit energy efficiency, making the design suitable for battery-operated IoT devices and energy-constrained embedded systems.
 
     \item \textbf{Security Enhancement:} First implementation combining resource optimization with side-channel attack countermeasures (dual S-box architecture for DPA resistance) without prohibitive area overhead.
 

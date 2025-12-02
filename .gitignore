@@ -1,0 +1,6 @@
+
+# Simulation binaries
+sim_*
+*.vcd
+*.vvp
+a.out

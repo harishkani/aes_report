@@ -1,0 +1,2974 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{listings}
+\usepackage{xcolor}
+
+% Page style
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{GATE CSE Study Guide}
+\lhead{\leftmark}
+\cfoot{\thepage}
+
+% Custom environments
+\newtcolorbox{defbox}{colback=blue!5!white,colframe=blue!75!black,title=Definition}
+\newtcolorbox{thmbox}{colback=green!5!white,colframe=green!75!black,title=Theorem}
+\newtcolorbox{notebox}{colback=yellow!5!white,colframe=yellow!75!black,title=Important Note}
+\newtcolorbox{formulabox}{colback=red!5!white,colframe=red!75!black,title=Formula}
+
+\title{\textbf{Comprehensive Study Guide for GATE CSE}\\
+\large All Theoretical Concepts}
+\author{Prepared for GATE Computer Science Engineering}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\newpage
+
+\tableofcontents
+\newpage
+
+%==============================================================================
+\section{Engineering Mathematics}
+%==============================================================================
+
+\subsection{Discrete Mathematics}
+
+\subsubsection{Mathematical Logic}
+
+\begin{defbox}
+\textbf{Proposition:} A declarative statement that is either true or false, but not both.
+\end{defbox}
+
+\textbf{Logical Connectives:}
+\begin{itemize}
+    \item Negation ($\neg$): NOT
+    \item Conjunction ($\wedge$): AND
+    \item Disjunction ($\vee$): OR
+    \item Implication ($\rightarrow$): IF-THEN
+    \item Biconditional ($\leftrightarrow$): IF AND ONLY IF
+\end{itemize}
+
+\begin{formulabox}
+\textbf{De Morgan's Laws:}
+\begin{align*}
+    \neg(p \wedge q) &\equiv \neg p \vee \neg q \\
+    \neg(p \vee q) &\equiv \neg p \wedge \neg q
+\end{align*}
+\end{formulabox}
+
+\textbf{Tautology:} A proposition that is always true.
+
+\textbf{Contradiction:} A proposition that is always false.
+
+\textbf{Contingency:} A proposition that is neither a tautology nor a contradiction.
+
+\subsubsection{Set Theory}
+
+\begin{defbox}
+\textbf{Set:} A well-defined collection of distinct objects.
+\end{defbox}
+
+\textbf{Set Operations:}
+\begin{itemize}
+    \item Union: $A \cup B = \{x : x \in A \text{ or } x \in B\}$
+    \item Intersection: $A \cap B = \{x : x \in A \text{ and } x \in B\}$
+    \item Difference: $A - B = \{x : x \in A \text{ and } x \notin B\}$
+    \item Complement: $A^c = U - A$ (where U is universal set)
+    \item Cartesian Product: $A \times B = \{(a,b) : a \in A, b \in B\}$
+\end{itemize}
+
+\begin{formulabox}
+\textbf{Set Identities:}
+\begin{align*}
+    A \cup (B \cap C) &= (A \cup B) \cap (A \cup C) \quad \text{(Distributive)} \\
+    A \cap (B \cup C) &= (A \cap B) \cup (A \cap C) \quad \text{(Distributive)} \\
+    (A \cup B)^c &= A^c \cap B^c \quad \text{(De Morgan's)} \\
+    (A \cap B)^c &= A^c \cup B^c \quad \text{(De Morgan's)}
+\end{align*}
+\end{formulabox}
+
+\textbf{Power Set:} $P(A) = \{S : S \subseteq A\}$. If $|A| = n$, then $|P(A)| = 2^n$.
+
+\subsubsection{Relations}
+
+\begin{defbox}
+\textbf{Relation:} A subset of the Cartesian product $A \times B$.
+\end{defbox}
+
+\textbf{Properties of Relations (on set A):}
+\begin{itemize}
+    \item \textbf{Reflexive:} $\forall a \in A, (a,a) \in R$
+    \item \textbf{Symmetric:} $(a,b) \in R \Rightarrow (b,a) \in R$
+    \item \textbf{Antisymmetric:} $(a,b) \in R \wedge (b,a) \in R \Rightarrow a = b$
+    \item \textbf{Transitive:} $(a,b) \in R \wedge (b,c) \in R \Rightarrow (a,c) \in R$
+\end{itemize}
+
+\begin{defbox}
+\textbf{Equivalence Relation:} A relation that is reflexive, symmetric, and transitive.
+\end{defbox}
+
+\begin{defbox}
+\textbf{Partial Order:} A relation that is reflexive, antisymmetric, and transitive.
+\end{defbox}
+
+\subsubsection{Functions}
+
+\begin{defbox}
+\textbf{Function:} A relation $f: A \rightarrow B$ where each element in A is related to exactly one element in B.
+\end{defbox}
+
+\textbf{Types of Functions:}
+\begin{itemize}
+    \item \textbf{Injective (One-to-One):} $f(a_1) = f(a_2) \Rightarrow a_1 = a_2$
+    \item \textbf{Surjective (Onto):} $\forall b \in B, \exists a \in A$ such that $f(a) = b$
+    \item \textbf{Bijective:} Both injective and surjective
+\end{itemize}
+
+\subsubsection{Combinatorics}
+
+\begin{formulabox}
+\textbf{Permutations:}
+\begin{align*}
+    P(n,r) &= \frac{n!}{(n-r)!} \\
+    \text{Circular Permutations} &= (n-1)!
+\end{align*}
+\end{formulabox}
+
+\begin{formulabox}
+\textbf{Combinations:}
+\[
+    C(n,r) = \binom{n}{r} = \frac{n!}{r!(n-r)!}
+\]
+\end{formulabox}
+
+\begin{formulabox}
+\textbf{Binomial Theorem:}
+\[
+    (x+y)^n = \sum_{k=0}^{n} \binom{n}{k} x^{n-k} y^k
+\]
+\end{formulabox}
+
+\textbf{Pigeonhole Principle:} If $n$ items are placed into $m$ containers with $n > m$, then at least one container must contain more than one item.
+
+\textbf{Inclusion-Exclusion Principle:}
+\[
+    |A \cup B| = |A| + |B| - |A \cap B|
+\]
+
+\subsubsection{Graph Theory}
+
+\begin{defbox}
+\textbf{Graph:} $G = (V, E)$ where V is a set of vertices and E is a set of edges.
+\end{defbox}
+
+\textbf{Graph Properties:}
+\begin{itemize}
+    \item \textbf{Degree:} Number of edges incident to a vertex
+    \item \textbf{Handshaking Lemma:} $\sum_{v \in V} deg(v) = 2|E|$
+    \item \textbf{Path:} Sequence of vertices where each consecutive pair is connected by an edge
+    \item \textbf{Cycle:} A path that starts and ends at the same vertex
+    \item \textbf{Connected Graph:} There exists a path between every pair of vertices
+\end{itemize}
+
+\textbf{Special Graphs:}
+\begin{itemize}
+    \item \textbf{Complete Graph $K_n$:} Every pair of vertices is connected
+    \item \textbf{Bipartite Graph:} Vertices can be divided into two disjoint sets
+    \item \textbf{Tree:} Connected acyclic graph with $|E| = |V| - 1$
+\end{itemize}
+
+\begin{thmbox}
+\textbf{Euler's Theorem:} A connected graph has an Eulerian circuit if and only if every vertex has even degree.
+\end{thmbox}
+
+\begin{thmbox}
+\textbf{Hamiltonian Path:} A path that visits every vertex exactly once. (No efficient algorithm exists to find it - NP-complete)
+\end{thmbox}
+
+\subsection{Linear Algebra}
+
+\subsubsection{Matrices}
+
+\begin{defbox}
+\textbf{Matrix:} A rectangular array of numbers arranged in rows and columns.
+\end{defbox}
+
+\textbf{Matrix Operations:}
+\begin{itemize}
+    \item Addition: $(A + B)_{ij} = A_{ij} + B_{ij}$
+    \item Scalar Multiplication: $(cA)_{ij} = c \cdot A_{ij}$
+    \item Matrix Multiplication: $(AB)_{ij} = \sum_{k} A_{ik}B_{kj}$
+    \item Transpose: $(A^T)_{ij} = A_{ji}$
+\end{itemize}
+
+\begin{defbox}
+\textbf{Determinant:} A scalar value that can be computed from a square matrix. For $2 \times 2$ matrix:
+\[
+    \det\begin{pmatrix} a & b \\ c & d \end{pmatrix} = ad - bc
+\]
+\end{defbox}
+
+\textbf{Properties of Determinants:}
+\begin{itemize}
+    \item $\det(AB) = \det(A) \cdot \det(B)$
+    \item $\det(A^T) = \det(A)$
+    \item If a row/column is all zeros, $\det(A) = 0$
+    \item $\det(A^{-1}) = \frac{1}{\det(A)}$
+\end{itemize}
+
+\subsubsection{Vector Spaces}
+
+\begin{defbox}
+\textbf{Vector Space:} A set V with operations of addition and scalar multiplication satisfying 8 axioms (closure, associativity, commutativity, identity, inverse, distributivity).
+\end{defbox}
+
+\begin{defbox}
+\textbf{Linear Independence:} Vectors $v_1, v_2, \ldots, v_n$ are linearly independent if:
+\[
+    c_1v_1 + c_2v_2 + \cdots + c_nv_n = 0 \Rightarrow c_1 = c_2 = \cdots = c_n = 0
+\]
+\end{defbox}
+
+\begin{defbox}
+\textbf{Basis:} A linearly independent set of vectors that spans the entire vector space.
+\end{defbox}
+
+\begin{defbox}
+\textbf{Dimension:} The number of vectors in a basis.
+\end{defbox}
+
+\subsubsection{Eigenvalues and Eigenvectors}
+
+\begin{defbox}
+\textbf{Eigenvalue and Eigenvector:} For matrix A, $\lambda$ is an eigenvalue and $v$ is an eigenvector if:
+\[
+    Av = \lambda v
+\]
+\end{defbox}
+
+\textbf{Characteristic Equation:}
+\[
+    \det(A - \lambda I) = 0
+\]
+
+\begin{notebox}
+Sum of eigenvalues = Trace of matrix\\
+Product of eigenvalues = Determinant of matrix
+\end{notebox}
+
+\subsection{Calculus}
+
+\subsubsection{Limits and Continuity}
+
+\begin{defbox}
+\textbf{Limit:} $\lim_{x \to a} f(x) = L$ if $f(x)$ approaches L as x approaches a.
+\end{defbox}
+
+\textbf{Important Limits:}
+\begin{align*}
+    \lim_{x \to 0} \frac{\sin x}{x} &= 1 \\
+    \lim_{x \to \infty} \left(1 + \frac{1}{x}\right)^x &= e
+\end{align*}
+
+\begin{defbox}
+\textbf{Continuity:} Function f is continuous at x = a if:
+\begin{enumerate}
+    \item $f(a)$ is defined
+    \item $\lim_{x \to a} f(x)$ exists
+    \item $\lim_{x \to a} f(x) = f(a)$
+\end{enumerate}
+\end{defbox}
+
+\subsubsection{Differentiation}
+
+\begin{formulabox}
+\textbf{Basic Derivatives:}
+\begin{align*}
+    \frac{d}{dx}(x^n) &= nx^{n-1} \\
+    \frac{d}{dx}(e^x) &= e^x \\
+    \frac{d}{dx}(\ln x) &= \frac{1}{x} \\
+    \frac{d}{dx}(\sin x) &= \cos x \\
+    \frac{d}{dx}(\cos x) &= -\sin x
+\end{align*}
+\end{formulabox}
+
+\textbf{Rules of Differentiation:}
+\begin{itemize}
+    \item Product Rule: $(uv)' = u'v + uv'$
+    \item Quotient Rule: $\left(\frac{u}{v}\right)' = \frac{u'v - uv'}{v^2}$
+    \item Chain Rule: $(f(g(x)))' = f'(g(x)) \cdot g'(x)$
+\end{itemize}
+
+\subsubsection{Integration}
+
+\begin{formulabox}
+\textbf{Basic Integrals:}
+\begin{align*}
+    \int x^n \, dx &= \frac{x^{n+1}}{n+1} + C \quad (n \neq -1) \\
+    \int \frac{1}{x} \, dx &= \ln|x| + C \\
+    \int e^x \, dx &= e^x + C \\
+    \int \sin x \, dx &= -\cos x + C \\
+    \int \cos x \, dx &= \sin x + C
+\end{align*}
+\end{formulabox}
+
+\textbf{Methods of Integration:}
+\begin{itemize}
+    \item Substitution
+    \item Integration by Parts: $\int u \, dv = uv - \int v \, du$
+    \item Partial Fractions
+\end{itemize}
+
+\subsection{Probability and Statistics}
+
+\subsubsection{Probability Basics}
+
+\begin{defbox}
+\textbf{Probability:} $P(A) = \frac{\text{Number of favorable outcomes}}{\text{Total number of outcomes}}$
+\end{defbox}
+
+\textbf{Axioms of Probability:}
+\begin{enumerate}
+    \item $0 \leq P(A) \leq 1$
+    \item $P(S) = 1$ (where S is sample space)
+    \item If A and B are mutually exclusive: $P(A \cup B) = P(A) + P(B)$
+\end{enumerate}
+
+\begin{formulabox}
+\textbf{Addition Rule:}
+\[
+    P(A \cup B) = P(A) + P(B) - P(A \cap B)
+\]
+\end{formulabox}
+
+\begin{formulabox}
+\textbf{Conditional Probability:}
+\[
+    P(A|B) = \frac{P(A \cap B)}{P(B)}
+\]
+\end{formulabox}
+
+\begin{formulabox}
+\textbf{Bayes' Theorem:}
+\[
+    P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}
+\]
+\end{formulabox}
+
+\begin{defbox}
+\textbf{Independent Events:} Events A and B are independent if $P(A \cap B) = P(A) \cdot P(B)$
+\end{defbox}
+
+\subsubsection{Random Variables}
+
+\begin{defbox}
+\textbf{Random Variable:} A function that assigns a numerical value to each outcome in a sample space.
+\end{defbox}
+
+\begin{defbox}
+\textbf{Expected Value (Mean):}
+\[
+    E[X] = \sum_{i} x_i P(X = x_i) \quad \text{(discrete)}
+\]
+\end{defbox}
+
+\begin{defbox}
+\textbf{Variance:}
+\[
+    Var(X) = E[(X - \mu)^2] = E[X^2] - (E[X])^2
+\]
+\end{defbox}
+
+\textbf{Properties:}
+\begin{align*}
+    E[aX + b] &= aE[X] + b \\
+    Var(aX + b) &= a^2 Var(X)
+\end{align*}
+
+\subsubsection{Distributions}
+
+\textbf{Binomial Distribution:} $X \sim B(n,p)$
+\[
+    P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}
+\]
+Mean: $np$, Variance: $np(1-p)$
+
+\textbf{Poisson Distribution:} $X \sim Poisson(\lambda)$
+\[
+    P(X = k) = \frac{e^{-\lambda} \lambda^k}{k!}
+\]
+Mean: $\lambda$, Variance: $\lambda$
+
+\textbf{Normal Distribution:} $X \sim N(\mu, \sigma^2)$
+\[
+    f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}
+\]
+
+%==============================================================================
+\section{Digital Logic}
+
+\subsection{Boolean Algebra}
+
+\begin{defbox}
+\textbf{Boolean Algebra:} An algebraic structure with two binary operations (AND, OR) and one unary operation (NOT).
+\end{defbox}
+
+\textbf{Boolean Laws:}
+\begin{itemize}
+    \item Identity: $A + 0 = A$, $A \cdot 1 = A$
+    \item Null: $A + 1 = 1$, $A \cdot 0 = 0$
+    \item Idempotent: $A + A = A$, $A \cdot A = A$
+    \item Complement: $A + A' = 1$, $A \cdot A' = 0$
+    \item Involution: $(A')' = A$
+    \item Commutative: $A + B = B + A$, $A \cdot B = B \cdot A$
+    \item Associative: $(A + B) + C = A + (B + C)$
+    \item Distributive: $A + (B \cdot C) = (A + B) \cdot (A + C)$
+    \item Absorption: $A + (A \cdot B) = A$, $A \cdot (A + B) = A$
+    \item De Morgan's: $(A + B)' = A' \cdot B'$, $(A \cdot B)' = A' + B'$
+\end{itemize}
+
+\subsection{Logic Gates}
+
+\textbf{Basic Gates:}
+\begin{itemize}
+    \item \textbf{AND:} Output 1 only if all inputs are 1
+    \item \textbf{OR:} Output 1 if at least one input is 1
+    \item \textbf{NOT:} Inverts the input
+    \item \textbf{NAND:} NOT-AND (Universal gate)
+    \item \textbf{NOR:} NOT-OR (Universal gate)
+    \item \textbf{XOR:} Output 1 if inputs are different
+    \item \textbf{XNOR:} Output 1 if inputs are same
+\end{itemize}
+
+\begin{notebox}
+NAND and NOR are universal gates - any Boolean function can be implemented using only NAND or only NOR gates.
+\end{notebox}
+
+\subsection{Combinational Circuits}
+
+\begin{defbox}
+\textbf{Combinational Circuit:} Output depends only on current inputs (no memory).
+\end{defbox}
+
+\textbf{Key Combinational Circuits:}
+
+\textbf{1. Multiplexer (MUX):} Selects one of many inputs based on select lines.
+\begin{itemize}
+    \item $2^n$-to-1 MUX requires n select lines
+    \item Can implement any Boolean function
+\end{itemize}
+
+\textbf{2. Demultiplexer (DEMUX):} Routes one input to one of many outputs.
+
+\textbf{3. Encoder:} Converts $2^n$ inputs to n-bit output.
+
+\textbf{4. Decoder:} Converts n-bit input to $2^n$ outputs.
+
+\textbf{5. Half Adder:}
+\begin{itemize}
+    \item Sum = $A \oplus B$
+    \item Carry = $A \cdot B$
+\end{itemize}
+
+\textbf{6. Full Adder:}
+\begin{itemize}
+    \item Sum = $A \oplus B \oplus C_{in}$
+    \item Carry = $AB + BC_{in} + AC_{in}$
+\end{itemize}
+
+\subsection{Sequential Circuits}
+
+\begin{defbox}
+\textbf{Sequential Circuit:} Output depends on current inputs and previous state (has memory).
+\end{defbox}
+
+\subsubsection{Flip-Flops}
+
+\textbf{SR Flip-Flop:}
+\begin{itemize}
+    \item S=1, R=0: Set (Q=1)
+    \item S=0, R=1: Reset (Q=0)
+    \item S=0, R=0: No change
+    \item S=1, R=1: Invalid state
+\end{itemize}
+
+\textbf{D Flip-Flop:}
+\begin{itemize}
+    \item Output Q = D on clock edge
+    \item No invalid states
+\end{itemize}
+
+\textbf{JK Flip-Flop:}
+\begin{itemize}
+    \item J=0, K=0: No change
+    \item J=0, K=1: Reset (Q=0)
+    \item J=1, K=0: Set (Q=1)
+    \item J=1, K=1: Toggle
+\end{itemize}
+
+\textbf{T Flip-Flop:}
+\begin{itemize}
+    \item T=0: No change
+    \item T=1: Toggle
+\end{itemize}
+
+\subsubsection{Counters and Registers}
+
+\textbf{Counter:} A sequential circuit that goes through a prescribed sequence of states.
+\begin{itemize}
+    \item \textbf{Asynchronous (Ripple):} Clock input cascaded through flip-flops
+    \item \textbf{Synchronous:} All flip-flops clocked simultaneously
+    \item \textbf{Modulo-N:} Counts from 0 to N-1
+\end{itemize}
+
+\textbf{Register:} A group of flip-flops used to store multiple bits.
+\begin{itemize}
+    \item \textbf{Shift Register:} Data shifted left or right
+    \item \textbf{SISO:} Serial In Serial Out
+    \item \textbf{SIPO:} Serial In Parallel Out
+    \item \textbf{PISO:} Parallel In Serial Out
+    \item \textbf{PIPO:} Parallel In Parallel Out
+\end{itemize}
+
+\subsection{Minimization Techniques}
+
+\textbf{Karnaugh Map (K-Map):}
+\begin{itemize}
+    \item Graphical method for simplifying Boolean expressions
+    \item Group adjacent 1s in powers of 2 (1, 2, 4, 8, ...)
+    \item Larger groups lead to simpler expressions
+\end{itemize}
+
+\textbf{Quine-McCluskey Method:}
+\begin{itemize}
+    \item Tabular method for minimization
+    \item Can handle any number of variables
+    \item Finds all prime implicants
+\end{itemize}
+
+%==============================================================================
+\section{Computer Organization and Architecture}
+
+\subsection{Number Systems}
+
+\textbf{Number Representation:}
+\begin{itemize}
+    \item \textbf{Binary:} Base 2 (0, 1)
+    \item \textbf{Octal:} Base 8 (0-7)
+    \item \textbf{Decimal:} Base 10 (0-9)
+    \item \textbf{Hexadecimal:} Base 16 (0-9, A-F)
+\end{itemize}
+
+\textbf{Signed Number Representation:}
+\begin{itemize}
+    \item \textbf{Sign-Magnitude:} MSB for sign, rest for magnitude
+    \item \textbf{1's Complement:} Invert all bits for negative
+    \item \textbf{2's Complement:} 1's complement + 1 (most common)
+\end{itemize}
+
+\begin{notebox}
+In n-bit 2's complement:
+\begin{itemize}
+    \item Range: $-2^{n-1}$ to $2^{n-1}-1$
+    \item Single representation for zero
+    \item Easy arithmetic operations
+\end{itemize}
+\end{notebox}
+
+\textbf{Floating Point (IEEE 754):}
+\[
+    (-1)^{\text{sign}} \times (1 + \text{mantissa}) \times 2^{\text{exponent - bias}}
+\]
+
+\textbf{Single Precision (32-bit):}
+\begin{itemize}
+    \item 1 bit sign
+    \item 8 bits exponent (bias = 127)
+    \item 23 bits mantissa
+\end{itemize}
+
+\textbf{Double Precision (64-bit):}
+\begin{itemize}
+    \item 1 bit sign
+    \item 11 bits exponent (bias = 1023)
+    \item 52 bits mantissa
+\end{itemize}
+
+\subsection{Computer Architecture}
+
+\subsubsection{Von Neumann Architecture}
+
+\textbf{Components:}
+\begin{enumerate}
+    \item \textbf{CPU:} Central Processing Unit
+    \item \textbf{Memory:} Stores instructions and data
+    \item \textbf{I/O Devices:} Input/Output devices
+    \item \textbf{Bus:} Communication pathway
+\end{enumerate}
+
+\textbf{Characteristics:}
+\begin{itemize}
+    \item Stored program concept
+    \item Same memory for instructions and data
+    \item Sequential instruction execution
+    \item Von Neumann bottleneck: CPU and memory communicate through single bus
+\end{itemize}
+
+\subsubsection{Harvard Architecture}
+
+\textbf{Characteristics:}
+\begin{itemize}
+    \item Separate memory for instructions and data
+    \item Separate buses for instructions and data
+    \item Can fetch instruction and data simultaneously
+    \item Used in DSP processors
+\end{itemize}
+
+\subsection{CPU Organization}
+
+\subsubsection{Registers}
+
+\textbf{Types of Registers:}
+\begin{itemize}
+    \item \textbf{Program Counter (PC):} Holds address of next instruction
+    \item \textbf{Instruction Register (IR):} Holds current instruction
+    \item \textbf{Memory Address Register (MAR):} Holds memory address
+    \item \textbf{Memory Data Register (MDR):} Holds data from/to memory
+    \item \textbf{Accumulator (AC):} Temporary storage for ALU operations
+    \item \textbf{Stack Pointer (SP):} Points to top of stack
+    \item \textbf{General Purpose Registers:} Used for various operations
+\end{itemize}
+
+\subsubsection{Instruction Cycle}
+
+\begin{defbox}
+\textbf{Instruction Cycle Phases:}
+\begin{enumerate}
+    \item \textbf{Fetch:} Get instruction from memory
+    \item \textbf{Decode:} Determine operation and operands
+    \item \textbf{Execute:} Perform the operation
+    \item \textbf{Store:} Write result back if needed
+\end{enumerate}
+\end{defbox}
+
+\subsubsection{Addressing Modes}
+
+\begin{enumerate}
+    \item \textbf{Immediate:} Operand is part of instruction
+    \item \textbf{Direct:} Address of operand in instruction
+    \item \textbf{Indirect:} Address of address in instruction
+    \item \textbf{Register:} Operand in register
+    \item \textbf{Register Indirect:} Register contains address
+    \item \textbf{Indexed:} Base address + index
+    \item \textbf{Base Register:} Base register + offset
+    \item \textbf{Relative:} PC + offset
+\end{enumerate}
+
+\subsubsection{Instruction Set Architecture}
+
+\textbf{CISC (Complex Instruction Set Computer):}
+\begin{itemize}
+    \item Many specialized instructions
+    \item Variable length instructions
+    \item Multiple addressing modes
+    \item Example: x86
+\end{itemize}
+
+\textbf{RISC (Reduced Instruction Set Computer):}
+\begin{itemize}
+    \item Simple, uniform instructions
+    \item Fixed length instructions
+    \item Load-store architecture
+    \item Example: ARM, MIPS
+\end{itemize}
+
+\subsection{Pipeline}
+
+\begin{defbox}
+\textbf{Pipelining:} Technique to improve instruction throughput by overlapping execution of multiple instructions.
+\end{defbox}
+
+\textbf{Classic 5-Stage Pipeline:}
+\begin{enumerate}
+    \item \textbf{IF:} Instruction Fetch
+    \item \textbf{ID:} Instruction Decode
+    \item \textbf{EX:} Execute
+    \item \textbf{MEM:} Memory Access
+    \item \textbf{WB:} Write Back
+\end{enumerate}
+
+\begin{formulabox}
+\textbf{Pipeline Performance:}
+\begin{align*}
+    \text{Speedup} &= \frac{\text{Non-pipelined time}}{\text{Pipelined time}} \\
+    \text{Ideal Speedup} &= \text{Number of stages}
+\end{align*}
+\end{formulabox}
+
+\textbf{Pipeline Hazards:}
+\begin{enumerate}
+    \item \textbf{Structural Hazard:} Resource conflict (e.g., single memory for data and instruction)
+    \item \textbf{Data Hazard:} Instruction depends on result of previous instruction
+    \begin{itemize}
+        \item RAW (Read After Write) - True dependency
+        \item WAR (Write After Read) - Anti dependency
+        \item WAW (Write After Write) - Output dependency
+    \end{itemize}
+    \item \textbf{Control Hazard:} Branch instructions disrupt pipeline flow
+\end{enumerate}
+
+\textbf{Hazard Solutions:}
+\begin{itemize}
+    \item \textbf{Stalling:} Insert bubbles (NOPs) in pipeline
+    \item \textbf{Forwarding (Bypassing):} Pass result directly to next stage
+    \item \textbf{Branch Prediction:} Predict branch outcome
+    \item \textbf{Delayed Branch:} Execute instruction after branch
+\end{itemize}
+
+\subsection{Memory Hierarchy}
+
+\begin{defbox}
+\textbf{Memory Hierarchy:} Organization of memory from fastest/smallest to slowest/largest.
+\end{defbox}
+
+\textbf{Hierarchy (top to bottom):}
+\begin{enumerate}
+    \item Registers (fastest, smallest)
+    \item Cache (L1, L2, L3)
+    \item Main Memory (RAM)
+    \item Secondary Storage (HDD, SSD)
+    \item Tertiary Storage (slowest, largest)
+\end{enumerate}
+
+\subsubsection{Cache Memory}
+
+\begin{defbox}
+\textbf{Cache:} Small, fast memory between CPU and main memory.
+\end{defbox}
+
+\textbf{Cache Performance Metrics:}
+\begin{align*}
+    \text{Hit Ratio} &= \frac{\text{Number of hits}}{\text{Total accesses}} \\
+    \text{Miss Ratio} &= 1 - \text{Hit Ratio} \\
+    \text{Average Access Time} &= \text{Hit Time} + \text{Miss Ratio} \times \text{Miss Penalty}
+\end{align*}
+
+\textbf{Cache Mapping Techniques:}
+
+\textbf{1. Direct Mapped:}
+\begin{itemize}
+    \item Each block maps to exactly one cache line
+    \item Cache line = (Block address) mod (Number of cache lines)
+    \item Simple, fast, but high conflict misses
+\end{itemize}
+
+\textbf{2. Fully Associative:}
+\begin{itemize}
+    \item Block can go in any cache line
+    \item Requires comparison with all tags
+    \item Flexible but expensive
+\end{itemize}
+
+\textbf{3. Set Associative (n-way):}
+\begin{itemize}
+    \item Cache divided into sets
+    \item Block maps to a set, can go in any line within set
+    \item Compromise between direct and fully associative
+\end{itemize}
+
+\textbf{Replacement Policies:}
+\begin{itemize}
+    \item \textbf{LRU (Least Recently Used):} Replace block not used for longest time
+    \item \textbf{FIFO (First In First Out):} Replace oldest block
+    \item \textbf{Random:} Replace random block
+    \item \textbf{LFU (Least Frequently Used):} Replace least frequently used block
+\end{itemize}
+
+\textbf{Write Policies:}
+\begin{itemize}
+    \item \textbf{Write-Through:} Write to both cache and memory
+    \item \textbf{Write-Back:} Write only to cache, update memory on replacement
+    \item \textbf{Write-Around:} Write directly to memory, bypass cache
+\end{itemize}
+
+\subsection{Virtual Memory}
+
+\begin{defbox}
+\textbf{Virtual Memory:} Technique that allows execution of programs larger than physical memory by using disk as extension of RAM.
+\end{defbox}
+
+\textbf{Paging:}
+\begin{itemize}
+    \item Divide memory into fixed-size pages
+    \item Virtual address = Page number + Offset
+    \item Page table maps virtual to physical addresses
+\end{itemize}
+
+\textbf{Translation Lookaside Buffer (TLB):}
+\begin{itemize}
+    \item Cache for page table entries
+    \item Fast address translation
+    \item Small, fully associative
+\end{itemize}
+
+\textbf{Page Replacement Algorithms:}
+\begin{enumerate}
+    \item \textbf{FIFO:} Replace oldest page
+    \item \textbf{LRU:} Replace least recently used page
+    \item \textbf{Optimal:} Replace page not used for longest time in future (theoretical)
+    \item \textbf{Second Chance:} FIFO with reference bit
+    \item \textbf{Clock:} Circular list with reference bit
+\end{enumerate}
+
+\begin{notebox}
+\textbf{Belady's Anomaly:} In FIFO, increasing number of page frames can increase page faults.
+\end{notebox}
+
+\subsection{I/O Organization}
+
+\textbf{I/O Methods:}
+\begin{enumerate}
+    \item \textbf{Programmed I/O:} CPU polls device status
+    \item \textbf{Interrupt-Driven I/O:} Device interrupts CPU when ready
+    \item \textbf{DMA (Direct Memory Access):} Device transfers data directly to/from memory
+\end{enumerate}
+
+\textbf{I/O Performance Metrics:}
+\begin{itemize}
+    \item \textbf{Throughput:} Amount of data transferred per unit time
+    \item \textbf{Latency:} Time for single I/O operation
+    \item \textbf{Bandwidth:} Maximum data transfer rate
+\end{itemize}
+
+%==============================================================================
+\section{Programming and Data Structures}
+
+\subsection{Programming Fundamentals}
+
+\subsubsection{Time Complexity}
+
+\begin{defbox}
+\textbf{Big-O Notation:} $f(n) = O(g(n))$ if $\exists c, n_0$ such that $f(n) \leq c \cdot g(n)$ for all $n \geq n_0$.
+\end{defbox}
+
+\textbf{Common Time Complexities (from best to worst):}
+\begin{itemize}
+    \item $O(1)$ - Constant
+    \item $O(\log n)$ - Logarithmic
+    \item $O(n)$ - Linear
+    \item $O(n \log n)$ - Linearithmic
+    \item $O(n^2)$ - Quadratic
+    \item $O(n^3)$ - Cubic
+    \item $O(2^n)$ - Exponential
+    \item $O(n!)$ - Factorial
+\end{itemize}
+
+\textbf{Other Notations:}
+\begin{itemize}
+    \item \textbf{Big-$\Omega$:} Lower bound
+    \item \textbf{Big-$\Theta$:} Tight bound (both upper and lower)
+    \item \textbf{Little-o:} Strict upper bound
+\end{itemize}
+
+\subsubsection{Recursion}
+
+\begin{defbox}
+\textbf{Recursion:} A function that calls itself directly or indirectly.
+\end{defbox}
+
+\textbf{Components of Recursion:}
+\begin{enumerate}
+    \item \textbf{Base Case:} Termination condition
+    \item \textbf{Recursive Case:} Function calls itself with modified parameters
+\end{enumerate}
+
+\textbf{Types:}
+\begin{itemize}
+    \item \textbf{Direct Recursion:} Function calls itself
+    \item \textbf{Indirect Recursion:} Function A calls B, B calls A
+    \item \textbf{Tail Recursion:} Recursive call is last operation
+\end{itemize}
+
+\subsection{Arrays}
+
+\begin{defbox}
+\textbf{Array:} Collection of elements of same type stored in contiguous memory locations.
+\end{defbox}
+
+\textbf{Properties:}
+\begin{itemize}
+    \item Fixed size
+    \item Random access: $O(1)$
+    \item Address calculation: $\text{Base} + i \times \text{size of element}$
+\end{itemize}
+
+\textbf{2D Array Storage:}
+\begin{itemize}
+    \item \textbf{Row-Major:} $A[i][j] = \text{Base} + (i \times n + j) \times \text{size}$
+    \item \textbf{Column-Major:} $A[i][j] = \text{Base} + (j \times m + i) \times \text{size}$
+\end{itemize}
+
+\subsection{Linked Lists}
+
+\begin{defbox}
+\textbf{Linked List:} Linear data structure where elements are stored in nodes, each containing data and pointer to next node.
+\end{defbox}
+
+\textbf{Types:}
+\begin{enumerate}
+    \item \textbf{Singly Linked List:} Each node points to next
+    \item \textbf{Doubly Linked List:} Each node has pointers to next and previous
+    \item \textbf{Circular Linked List:} Last node points to first
+\end{enumerate}
+
+\textbf{Operations Complexity:}
+\begin{itemize}
+    \item Access: $O(n)$
+    \item Search: $O(n)$
+    \item Insert at beginning: $O(1)$
+    \item Insert at end: $O(n)$ (or $O(1)$ with tail pointer)
+    \item Delete: $O(n)$
+\end{itemize}
+
+\subsection{Stacks}
+
+\begin{defbox}
+\textbf{Stack:} Linear data structure following LIFO (Last In First Out) principle.
+\end{defbox}
+
+\textbf{Operations:}
+\begin{itemize}
+    \item \textbf{Push:} Add element to top - $O(1)$
+    \item \textbf{Pop:} Remove element from top - $O(1)$
+    \item \textbf{Peek/Top:} View top element - $O(1)$
+    \item \textbf{isEmpty:} Check if stack is empty - $O(1)$
+\end{itemize}
+
+\textbf{Applications:}
+\begin{itemize}
+    \item Function call management
+    \item Expression evaluation and conversion
+    \item Backtracking algorithms
+    \item Undo mechanisms
+\end{itemize}
+
+\subsection{Queues}
+
+\begin{defbox}
+\textbf{Queue:} Linear data structure following FIFO (First In First Out) principle.
+\end{defbox}
+
+\textbf{Operations:}
+\begin{itemize}
+    \item \textbf{Enqueue:} Add element to rear - $O(1)$
+    \item \textbf{Dequeue:} Remove element from front - $O(1)$
+    \item \textbf{Front:} View front element - $O(1)$
+    \item \textbf{isEmpty:} Check if queue is empty - $O(1)$
+\end{itemize}
+
+\textbf{Types:}
+\begin{enumerate}
+    \item \textbf{Simple Queue:} Basic FIFO
+    \item \textbf{Circular Queue:} Rear wraps around to front
+    \item \textbf{Priority Queue:} Elements have priorities
+    \item \textbf{Deque (Double-ended Queue):} Insert/delete from both ends
+\end{enumerate}
+
+\subsection{Trees}
+
+\begin{defbox}
+\textbf{Tree:} Hierarchical data structure with nodes connected by edges. One node is root, others are children.
+\end{defbox}
+
+\textbf{Tree Terminology:}
+\begin{itemize}
+    \item \textbf{Root:} Top node
+    \item \textbf{Parent:} Node with children
+    \item \textbf{Child:} Node connected below
+    \item \textbf{Leaf:} Node with no children
+    \item \textbf{Height:} Longest path from root to leaf
+    \item \textbf{Depth:} Distance from root
+    \item \textbf{Degree:} Number of children
+\end{itemize}
+
+\subsubsection{Binary Tree}
+
+\begin{defbox}
+\textbf{Binary Tree:} Tree where each node has at most two children (left and right).
+\end{defbox}
+
+\textbf{Types:}
+\begin{itemize}
+    \item \textbf{Full Binary Tree:} Every node has 0 or 2 children
+    \item \textbf{Complete Binary Tree:} All levels filled except possibly last, which is filled left to right
+    \item \textbf{Perfect Binary Tree:} All internal nodes have 2 children, all leaves at same level
+    \item \textbf{Balanced Binary Tree:} Height difference of left and right subtrees $\leq 1$
+\end{itemize}
+
+\textbf{Properties:}
+\begin{itemize}
+    \item Maximum nodes at level $l$: $2^l$
+    \item Maximum nodes in tree of height $h$: $2^{h+1} - 1$
+    \item Minimum height for $n$ nodes: $\log_2(n+1) - 1$
+\end{itemize}
+
+\textbf{Tree Traversals:}
+\begin{enumerate}
+    \item \textbf{Inorder (LNR):} Left, Node, Right
+    \item \textbf{Preorder (NLR):} Node, Left, Right
+    \item \textbf{Postorder (LRN):} Left, Right, Node
+    \item \textbf{Level Order:} Level by level (uses queue)
+\end{enumerate}
+
+\subsubsection{Binary Search Tree (BST)}
+
+\begin{defbox}
+\textbf{BST:} Binary tree where for each node:
+\begin{itemize}
+    \item All values in left subtree $<$ node value
+    \item All values in right subtree $>$ node value
+\end{itemize}
+\end{defbox}
+
+\textbf{Operations:}
+\begin{itemize}
+    \item Search: $O(h)$ where h is height
+    \item Insert: $O(h)$
+    \item Delete: $O(h)$
+    \item Best case: $h = \log n$ (balanced)
+    \item Worst case: $h = n$ (skewed)
+\end{itemize}
+
+\begin{notebox}
+Inorder traversal of BST gives sorted sequence.
+\end{notebox}
+
+\subsubsection{AVL Tree}
+
+\begin{defbox}
+\textbf{AVL Tree:} Self-balancing BST where height difference of left and right subtrees is at most 1.
+\end{defbox}
+
+\textbf{Balance Factor:} $BF = \text{Height(Left Subtree)} - \text{Height(Right Subtree)}$
+
+\textbf{Valid values:} -1, 0, 1
+
+\textbf{Rotations:}
+\begin{enumerate}
+    \item \textbf{Left Rotation (LL):} Right subtree is heavy
+    \item \textbf{Right Rotation (RR):} Left subtree is heavy
+    \item \textbf{Left-Right Rotation (LR):} Left subtree's right is heavy
+    \item \textbf{Right-Left Rotation (RL):} Right subtree's left is heavy
+\end{enumerate}
+
+\textbf{Operations:} All operations in $O(\log n)$
+
+\subsubsection{Red-Black Tree}
+
+\begin{defbox}
+\textbf{Red-Black Tree:} Self-balancing BST with following properties:
+\begin{enumerate}
+    \item Every node is red or black
+    \item Root is black
+    \item All leaves (NIL) are black
+    \item Red node cannot have red children
+    \item All paths from node to leaves have same number of black nodes
+\end{enumerate}
+\end{defbox}
+
+\textbf{Operations:} All operations in $O(\log n)$
+
+\textbf{Comparison with AVL:}
+\begin{itemize}
+    \item AVL is more rigidly balanced
+    \item Red-Black allows slightly unbalanced trees
+    \item Red-Black has faster insertion/deletion
+    \item AVL has faster lookup
+\end{itemize}
+
+\subsubsection{B-Tree}
+
+\begin{defbox}
+\textbf{B-Tree of order m:} Self-balancing tree where:
+\begin{itemize}
+    \item Each node has at most m children
+    \item Each non-leaf node (except root) has at least $\lceil m/2 \rceil$ children
+    \item Root has at least 2 children (if not leaf)
+    \item All leaves are at same level
+\end{itemize}
+\end{defbox}
+
+\textbf{Used in:} Database indexing, file systems
+
+\subsection{Heaps}
+
+\begin{defbox}
+\textbf{Heap:} Complete binary tree satisfying heap property:
+\begin{itemize}
+    \item \textbf{Max Heap:} Parent $\geq$ children
+    \item \textbf{Min Heap:} Parent $\leq$ children
+\end{itemize}
+\end{defbox}
+
+\textbf{Array Representation:}
+\begin{itemize}
+    \item Parent of node $i$: $(i-1)/2$
+    \item Left child of node $i$: $2i + 1$
+    \item Right child of node $i$: $2i + 2$
+\end{itemize}
+
+\textbf{Operations:}
+\begin{itemize}
+    \item Insert: $O(\log n)$ - Add at end, heapify up
+    \item Delete Max/Min: $O(\log n)$ - Remove root, move last to root, heapify down
+    \item Get Max/Min: $O(1)$
+    \item Build Heap: $O(n)$
+\end{itemize}
+
+\textbf{Applications:}
+\begin{itemize}
+    \item Priority queues
+    \item Heap sort
+    \item Graph algorithms (Dijkstra, Prim)
+\end{itemize}
+
+\subsection{Hashing}
+
+\begin{defbox}
+\textbf{Hashing:} Technique to map data to fixed-size values using a hash function.
+\end{defbox}
+
+\textbf{Hash Function Properties:}
+\begin{itemize}
+    \item Deterministic
+    \item Uniform distribution
+    \item Fast computation
+    \item Minimize collisions
+\end{itemize}
+
+\textbf{Common Hash Functions:}
+\begin{enumerate}
+    \item \textbf{Division Method:} $h(k) = k \mod m$
+    \item \textbf{Multiplication Method:} $h(k) = \lfloor m(kA \mod 1) \rfloor$
+    \item \textbf{Mid-Square Method:} Square key, take middle digits
+    \item \textbf{Folding Method:} Divide key into parts, add them
+\end{enumerate}
+
+\textbf{Collision Resolution:}
+
+\textbf{1. Open Addressing:}
+\begin{itemize}
+    \item \textbf{Linear Probing:} $h(k, i) = (h(k) + i) \mod m$
+    \item \textbf{Quadratic Probing:} $h(k, i) = (h(k) + c_1i + c_2i^2) \mod m$
+    \item \textbf{Double Hashing:} $h(k, i) = (h_1(k) + i \cdot h_2(k)) \mod m$
+\end{itemize}
+
+\textbf{2. Chaining:} Store colliding elements in linked list at same index
+
+\textbf{Load Factor:} $\alpha = \frac{n}{m}$ where n = number of elements, m = table size
+
+\begin{notebox}
+Average case operations (with good hash function):
+\begin{itemize}
+    \item Insert: $O(1)$
+    \item Search: $O(1)$
+    \item Delete: $O(1)$
+\end{itemize}
+\end{notebox}
+
+\subsection{Graphs}
+
+\begin{defbox}
+\textbf{Graph:} $G = (V, E)$ where V is set of vertices and E is set of edges.
+\end{defbox}
+
+\textbf{Types:}
+\begin{itemize}
+    \item \textbf{Directed/Undirected}
+    \item \textbf{Weighted/Unweighted}
+    \item \textbf{Cyclic/Acyclic}
+    \item \textbf{Connected/Disconnected}
+\end{itemize}
+
+\textbf{Representation:}
+\begin{enumerate}
+    \item \textbf{Adjacency Matrix:} 2D array, $A[i][j] = 1$ if edge exists
+    \begin{itemize}
+        \item Space: $O(V^2)$
+        \item Edge lookup: $O(1)$
+        \item Finding neighbors: $O(V)$
+    \end{itemize}
+    \item \textbf{Adjacency List:} Array of lists
+    \begin{itemize}
+        \item Space: $O(V + E)$
+        \item Edge lookup: $O(V)$ worst case
+        \item Finding neighbors: $O(\text{degree})$
+    \end{itemize}
+\end{enumerate}
+
+%==============================================================================
+\section{Algorithms}
+
+\subsection{Sorting Algorithms}
+
+\subsubsection{Bubble Sort}
+\begin{itemize}
+    \item Repeatedly swap adjacent elements if in wrong order
+    \item Time: $O(n^2)$ average and worst, $O(n)$ best
+    \item Space: $O(1)$
+    \item Stable
+\end{itemize}
+
+\subsubsection{Selection Sort}
+\begin{itemize}
+    \item Find minimum and place at beginning
+    \item Time: $O(n^2)$ all cases
+    \item Space: $O(1)$
+    \item Not stable
+\end{itemize}
+
+\subsubsection{Insertion Sort}
+\begin{itemize}
+    \item Build sorted array one element at a time
+    \item Time: $O(n^2)$ average and worst, $O(n)$ best
+    \item Space: $O(1)$
+    \item Stable
+    \item Good for small arrays and nearly sorted data
+\end{itemize}
+
+\subsubsection{Merge Sort}
+\begin{itemize}
+    \item Divide array, sort halves, merge
+    \item Time: $O(n \log n)$ all cases
+    \item Space: $O(n)$
+    \item Stable
+    \item Divide and conquer
+\end{itemize}
+
+\subsubsection{Quick Sort}
+\begin{itemize}
+    \item Pick pivot, partition, recursively sort
+    \item Time: $O(n \log n)$ average, $O(n^2)$ worst
+    \item Space: $O(\log n)$ average (recursion stack)
+    \item Not stable
+    \item In-place
+\end{itemize}
+
+\subsubsection{Heap Sort}
+\begin{itemize}
+    \item Build max heap, repeatedly extract max
+    \item Time: $O(n \log n)$ all cases
+    \item Space: $O(1)$
+    \item Not stable
+    \item In-place
+\end{itemize}
+
+\subsubsection{Counting Sort}
+\begin{itemize}
+    \item Count occurrences of each value
+    \item Time: $O(n + k)$ where k is range
+    \item Space: $O(k)$
+    \item Stable
+    \item Non-comparison sort
+    \item Works when range is not too large
+\end{itemize}
+
+\subsubsection{Radix Sort}
+\begin{itemize}
+    \item Sort digit by digit using stable sort
+    \item Time: $O(d(n + k))$ where d is number of digits
+    \item Space: $O(n + k)$
+    \item Stable
+    \item Non-comparison sort
+\end{itemize}
+
+\subsection{Searching Algorithms}
+
+\subsubsection{Linear Search}
+\begin{itemize}
+    \item Check each element sequentially
+    \item Time: $O(n)$
+    \item Works on unsorted data
+\end{itemize}
+
+\subsubsection{Binary Search}
+\begin{itemize}
+    \item Divide sorted array in half repeatedly
+    \item Time: $O(\log n)$
+    \item Requires sorted array
+\end{itemize}
+
+\subsection{Graph Algorithms}
+
+\subsubsection{Breadth-First Search (BFS)}
+\begin{itemize}
+    \item Explore level by level using queue
+    \item Time: $O(V + E)$
+    \item Space: $O(V)$
+    \item Finds shortest path in unweighted graph
+\end{itemize}
+
+\subsubsection{Depth-First Search (DFS)}
+\begin{itemize}
+    \item Explore as far as possible before backtracking
+    \item Time: $O(V + E)$
+    \item Space: $O(V)$ (recursion stack)
+    \item Used for topological sort, cycle detection
+\end{itemize}
+
+\subsubsection{Dijkstra's Algorithm}
+\begin{itemize}
+    \item Finds shortest path from source to all vertices
+    \item Time: $O((V + E) \log V)$ with min-heap
+    \item Does not work with negative weights
+    \item Greedy algorithm
+\end{itemize}
+
+\subsubsection{Bellman-Ford Algorithm}
+\begin{itemize}
+    \item Finds shortest path from source
+    \item Time: $O(VE)$
+    \item Works with negative weights
+    \item Detects negative cycles
+    \item Dynamic programming
+\end{itemize}
+
+\subsubsection{Floyd-Warshall Algorithm}
+\begin{itemize}
+    \item All pairs shortest path
+    \item Time: $O(V^3)$
+    \item Space: $O(V^2)$
+    \item Works with negative weights
+    \item Dynamic programming
+\end{itemize}
+
+\subsubsection{Prim's Algorithm}
+\begin{itemize}
+    \item Finds Minimum Spanning Tree
+    \item Time: $O((V + E) \log V)$ with min-heap
+    \item Greedy algorithm
+    \item Starts from single vertex
+\end{itemize}
+
+\subsubsection{Kruskal's Algorithm}
+\begin{itemize}
+    \item Finds Minimum Spanning Tree
+    \item Time: $O(E \log E)$ or $O(E \log V)$
+    \item Greedy algorithm
+    \item Sorts edges by weight
+    \item Uses Union-Find data structure
+\end{itemize}
+
+\subsubsection{Topological Sort}
+\begin{itemize}
+    \item Linear ordering of vertices in DAG
+    \item Time: $O(V + E)$
+    \item Uses DFS or Kahn's algorithm (BFS)
+    \item Used in scheduling problems
+\end{itemize}
+
+\subsection{Dynamic Programming}
+
+\begin{defbox}
+\textbf{Dynamic Programming:} Solve complex problems by breaking down into simpler subproblems, storing results to avoid recomputation.
+\end{defbox}
+
+\textbf{Characteristics:}
+\begin{enumerate}
+    \item \textbf{Optimal Substructure:} Optimal solution contains optimal solutions to subproblems
+    \item \textbf{Overlapping Subproblems:} Same subproblems solved multiple times
+\end{enumerate}
+
+\textbf{Approaches:}
+\begin{itemize}
+    \item \textbf{Top-Down (Memoization):} Recursion with caching
+    \item \textbf{Bottom-Up (Tabulation):} Iterative, fill table
+\end{itemize}
+
+\textbf{Classic Problems:}
+\begin{itemize}
+    \item Fibonacci Numbers
+    \item Longest Common Subsequence (LCS)
+    \item Longest Increasing Subsequence (LIS)
+    \item 0/1 Knapsack
+    \item Matrix Chain Multiplication
+    \item Edit Distance
+    \item Coin Change
+    \item Rod Cutting
+\end{itemize}
+
+\subsection{Greedy Algorithms}
+
+\begin{defbox}
+\textbf{Greedy Algorithm:} Make locally optimal choice at each step, hoping to find global optimum.
+\end{defbox}
+
+\textbf{When Greedy Works:}
+\begin{enumerate}
+    \item \textbf{Greedy Choice Property:} Local optimal choice leads to global optimal
+    \item \textbf{Optimal Substructure:} Optimal solution contains optimal subproblem solutions
+\end{enumerate}
+
+\textbf{Classic Problems:}
+\begin{itemize}
+    \item Activity Selection
+    \item Fractional Knapsack
+    \item Huffman Coding
+    \item Minimum Spanning Tree (Prim's, Kruskal's)
+    \item Shortest Path (Dijkstra's)
+\end{itemize}
+
+\subsection{Divide and Conquer}
+
+\begin{defbox}
+\textbf{Divide and Conquer:} Break problem into smaller subproblems, solve recursively, combine solutions.
+\end{defbox}
+
+\textbf{Steps:}
+\begin{enumerate}
+    \item \textbf{Divide:} Break into subproblems
+    \item \textbf{Conquer:} Solve subproblems recursively
+    \item \textbf{Combine:} Merge solutions
+\end{enumerate}
+
+\textbf{Examples:}
+\begin{itemize}
+    \item Merge Sort
+    \item Quick Sort
+    \item Binary Search
+    \item Strassen's Matrix Multiplication
+\end{itemize}
+
+\subsection{Backtracking}
+
+\begin{defbox}
+\textbf{Backtracking:} Build solution incrementally, abandon solution if it cannot lead to valid answer.
+\end{defbox}
+
+\textbf{Classic Problems:}
+\begin{itemize}
+    \item N-Queens
+    \item Sudoku
+    \item Graph Coloring
+    \item Hamiltonian Path
+    \item Subset Sum
+\end{itemize}
+
+\subsection{String Algorithms}
+
+\subsubsection{Pattern Matching}
+
+\textbf{Naive Algorithm:}
+\begin{itemize}
+    \item Check pattern at each position
+    \item Time: $O(nm)$ where n = text length, m = pattern length
+\end{itemize}
+
+\textbf{KMP (Knuth-Morris-Pratt):}
+\begin{itemize}
+    \item Use failure function to avoid redundant comparisons
+    \item Time: $O(n + m)$
+    \item Preprocessing: Build LPS (Longest Proper Prefix Suffix) array
+\end{itemize}
+
+\textbf{Rabin-Karp:}
+\begin{itemize}
+    \item Use hashing to match pattern
+    \item Average time: $O(n + m)$
+    \item Worst time: $O(nm)$
+\end{itemize}
+
+%==============================================================================
+\section{Theory of Computation}
+
+\subsection{Automata Theory}
+
+\subsubsection{Finite Automata}
+
+\begin{defbox}
+\textbf{Deterministic Finite Automaton (DFA):} $M = (Q, \Sigma, \delta, q_0, F)$ where:
+\begin{itemize}
+    \item Q: Finite set of states
+    \item $\Sigma$: Input alphabet
+    \item $\delta$: Transition function $Q \times \Sigma \rightarrow Q$
+    \item $q_0$: Start state
+    \item F: Set of accept states
+\end{itemize}
+\end{defbox}
+
+\begin{defbox}
+\textbf{Nondeterministic Finite Automaton (NFA):} Similar to DFA but:
+\begin{itemize}
+    \item $\delta: Q \times \Sigma_\epsilon \rightarrow P(Q)$ where $\Sigma_\epsilon = \Sigma \cup \{\epsilon\}$
+    \item Can have $\epsilon$-transitions
+    \item Multiple transitions for same input
+\end{itemize}
+\end{defbox}
+
+\begin{thmbox}
+\textbf{Equivalence:} For every NFA, there exists an equivalent DFA.
+\end{thmbox}
+
+\textbf{Regular Languages Properties:}
+\begin{itemize}
+    \item Closed under union, concatenation, Kleene star
+    \item Closed under complement, intersection
+    \item Pumping lemma for regular languages
+\end{itemize}
+
+\begin{thmbox}
+\textbf{Pumping Lemma (Regular):} If L is regular, then $\exists p$ (pumping length) such that $\forall s \in L$ with $|s| \geq p$, s can be divided into $s = xyz$ where:
+\begin{enumerate}
+    \item $|xy| \leq p$
+    \item $|y| > 0$
+    \item $\forall i \geq 0, xy^iz \in L$
+\end{enumerate}
+\end{thmbox}
+
+\subsubsection{Regular Expressions}
+
+\begin{defbox}
+\textbf{Regular Expression:} Pattern describing regular language using:
+\begin{itemize}
+    \item Concatenation
+    \item Union (|)
+    \item Kleene star (*)
+\end{itemize}
+\end{defbox}
+
+\begin{thmbox}
+A language is regular if and only if it can be described by a regular expression.
+\end{thmbox}
+
+\subsubsection{Context-Free Grammars}
+
+\begin{defbox}
+\textbf{Context-Free Grammar (CFG):} $G = (V, \Sigma, R, S)$ where:
+\begin{itemize}
+    \item V: Variables (non-terminals)
+    \item $\Sigma$: Terminals
+    \item R: Production rules ($ A \rightarrow \alpha$)
+    \item S: Start symbol
+\end{itemize}
+\end{defbox}
+
+\textbf{Chomsky Normal Form (CNF):}
+\begin{itemize}
+    \item $A \rightarrow BC$ or $A \rightarrow a$
+    \item All productions in one of these forms
+\end{itemize}
+
+\textbf{Derivations:}
+\begin{itemize}
+    \item \textbf{Leftmost:} Replace leftmost variable first
+    \item \textbf{Rightmost:} Replace rightmost variable first
+\end{itemize}
+
+\begin{defbox}
+\textbf{Ambiguity:} A grammar is ambiguous if a string has multiple parse trees.
+\end{defbox}
+
+\subsubsection{Pushdown Automata (PDA)}
+
+\begin{defbox}
+\textbf{PDA:} Finite automaton with stack.
+\end{defbox}
+
+\begin{thmbox}
+A language is context-free if and only if it is recognized by a PDA.
+\end{thmbox}
+
+\begin{thmbox}
+\textbf{Pumping Lemma (Context-Free):} If L is context-free, then $\exists p$ such that $\forall s \in L$ with $|s| \geq p$, s can be divided into $s = uvxyz$ where:
+\begin{enumerate}
+    \item $|vy| > 0$
+    \item $|vxy| \leq p$
+    \item $\forall i \geq 0, uv^ixy^iz \in L$
+\end{enumerate}
+\end{thmbox}
+
+\subsubsection{Turing Machines}
+
+\begin{defbox}
+\textbf{Turing Machine:} $M = (Q, \Sigma, \Gamma, \delta, q_0, q_{accept}, q_{reject})$ where:
+\begin{itemize}
+    \item Q: States
+    \item $\Sigma$: Input alphabet
+    \item $\Gamma$: Tape alphabet ($\Sigma \subset \Gamma$)
+    \item $\delta: Q \times \Gamma \rightarrow Q \times \Gamma \times \{L, R\}$
+    \item $q_0$: Start state
+    \item $q_{accept}, q_{reject}$: Accept/reject states
+\end{itemize}
+\end{defbox}
+
+\textbf{Variants:}
+\begin{itemize}
+    \item Multi-tape TM
+    \item Non-deterministic TM
+    \item All equivalent in power to standard TM
+\end{itemize}
+
+\subsection{Computability Theory}
+
+\subsubsection{Decidability}
+
+\begin{defbox}
+\textbf{Decidable Language:} A language for which there exists a TM that halts on all inputs and accepts strings in the language.
+\end{defbox}
+
+\begin{defbox}
+\textbf{Recognizable (Recursively Enumerable):} A language for which there exists a TM that accepts all strings in the language (may not halt on strings not in language).
+\end{defbox}
+
+\begin{thmbox}
+Every decidable language is recognizable, but not vice versa.
+\end{thmbox}
+
+\textbf{Undecidable Problems:}
+\begin{itemize}
+    \item \textbf{Halting Problem:} Determine if TM halts on given input
+    \item \textbf{$A_{TM}$:} Does TM M accept input w?
+    \item \textbf{Rice's Theorem:} Any non-trivial property of TM languages is undecidable
+\end{itemize}
+
+\subsubsection{Reducibility}
+
+\begin{defbox}
+\textbf{Mapping Reduction:} Language A is mapping reducible to B ($A \leq_m B$) if there exists computable function $f$ such that:
+\[
+    w \in A \Leftrightarrow f(w) \in B
+\]
+\end{defbox}
+
+\textbf{Properties:}
+\begin{itemize}
+    \item If $A \leq_m B$ and B is decidable, then A is decidable
+    \item If $A \leq_m B$ and A is undecidable, then B is undecidable
+\end{itemize}
+
+\subsection{Complexity Theory}
+
+\subsubsection{Time Complexity Classes}
+
+\begin{defbox}
+\textbf{P:} Set of languages decidable in polynomial time on deterministic TM.
+\end{defbox}
+
+\begin{defbox}
+\textbf{NP:} Set of languages decidable in polynomial time on non-deterministic TM (or verifiable in polynomial time).
+\end{defbox}
+
+\begin{defbox}
+\textbf{NP-Complete:} A language L is NP-complete if:
+\begin{enumerate}
+    \item $L \in NP$
+    \item Every language in NP is polynomial-time reducible to L
+\end{enumerate}
+\end{defbox}
+
+\begin{defbox}
+\textbf{NP-Hard:} Problems at least as hard as hardest problems in NP (need not be in NP).
+\end{defbox}
+
+\begin{notebox}
+\textbf{P vs NP:} Open problem. Does $P = NP$? Most believe $P \neq NP$.
+\end{notebox}
+
+\textbf{NP-Complete Problems:}
+\begin{itemize}
+    \item SAT (Boolean Satisfiability)
+    \item 3-SAT
+    \item Clique
+    \item Vertex Cover
+    \item Hamiltonian Path
+    \item Traveling Salesman Problem (decision version)
+    \item Subset Sum
+\end{itemize}
+
+\begin{thmbox}
+\textbf{Cook-Levin Theorem:} SAT is NP-complete.
+\end{thmbox}
+
+\subsubsection{Space Complexity Classes}
+
+\begin{defbox}
+\textbf{PSPACE:} Problems solvable using polynomial space.
+\end{defbox}
+
+\begin{thmbox}
+$P \subseteq NP \subseteq PSPACE$
+\end{thmbox}
+
+%==============================================================================
+\section{Compiler Design}
+
+\subsection{Phases of Compiler}
+
+\begin{defbox}
+\textbf{Compiler:} Program that translates source code to target code (usually machine code).
+\end{defbox}
+
+\textbf{Phases:}
+\begin{enumerate}
+    \item \textbf{Lexical Analysis:} Convert source to tokens
+    \item \textbf{Syntax Analysis (Parsing):} Check grammar, create parse tree
+    \item \textbf{Semantic Analysis:} Check meaning, type checking
+    \item \textbf{Intermediate Code Generation:} Generate intermediate representation
+    \item \textbf{Code Optimization:} Improve efficiency
+    \item \textbf{Code Generation:} Generate target code
+\end{enumerate}
+
+\subsection{Lexical Analysis}
+
+\begin{defbox}
+\textbf{Lexical Analyzer (Lexer/Scanner):} Reads source code and produces tokens.
+\end{defbox}
+
+\textbf{Token:} Basic unit (keyword, identifier, operator, etc.)
+
+\textbf{Implementation:}
+\begin{itemize}
+    \item Uses finite automata
+    \item Regular expressions define tokens
+    \item Tools: Lex, Flex
+\end{itemize}
+
+\subsection{Syntax Analysis}
+
+\begin{defbox}
+\textbf{Parser:} Checks if token sequence follows grammar rules.
+\end{defbox}
+
+\textbf{Parsing Techniques:}
+
+\textbf{1. Top-Down Parsing:}
+\begin{itemize}
+    \item Start from start symbol, try to reach input
+    \item \textbf{Recursive Descent:} Recursive functions for each non-terminal
+    \item \textbf{LL(1):} Left-to-right scan, Leftmost derivation, 1 lookahead
+    \begin{itemize}
+        \item Uses parsing table
+        \item No left recursion
+        \item No ambiguity
+    \end{itemize}
+\end{itemize}
+
+\textbf{2. Bottom-Up Parsing:}
+\begin{itemize}
+    \item Start from input, reduce to start symbol
+    \item \textbf{LR Parsing:} Left-to-right scan, Rightmost derivation in reverse
+    \item Types: SLR, LALR, CLR (increasing power)
+    \item Uses parsing table and stack
+    \item More powerful than LL
+\end{itemize}
+
+\textbf{Parse Tree vs Abstract Syntax Tree (AST):}
+\begin{itemize}
+    \item Parse tree: Shows all grammar rules
+    \item AST: Simplified, shows structure without grammar details
+\end{itemize}
+
+\subsection{Semantic Analysis}
+
+\textbf{Tasks:}
+\begin{itemize}
+    \item \textbf{Type Checking:} Ensure type consistency
+    \item \textbf{Scope Resolution:} Check variable declarations
+    \item \textbf{Symbol Table:} Store information about identifiers
+\end{itemize}
+
+\textbf{Symbol Table:}
+\begin{itemize}
+    \item Stores: name, type, scope, memory location
+    \item Operations: insert, lookup, delete
+    \item Implementation: hash table, tree
+\end{itemize}
+
+\subsection{Intermediate Code Generation}
+
+\textbf{Common Forms:}
+\begin{enumerate}
+    \item \textbf{Three-Address Code:} $x = y \text{ op } z$
+    \item \textbf{Abstract Syntax Tree}
+    \item \textbf{Directed Acyclic Graph (DAG):} Identifies common subexpressions
+\end{enumerate}
+
+\subsection{Code Optimization}
+
+\textbf{Types:}
+\begin{itemize}
+    \item \textbf{Machine Independent:}
+    \begin{itemize}
+        \item Constant folding
+        \item Dead code elimination
+        \item Common subexpression elimination
+        \item Loop optimization (invariant code motion, strength reduction)
+    \end{itemize}
+    \item \textbf{Machine Dependent:}
+    \begin{itemize}
+        \item Register allocation
+        \item Instruction scheduling
+        \item Peephole optimization
+    \end{itemize}
+\end{itemize}
+
+\subsection{Code Generation}
+
+\textbf{Tasks:}
+\begin{itemize}
+    \item Instruction selection
+    \item Register allocation
+    \item Instruction ordering
+\end{itemize}
+
+\textbf{Register Allocation:}
+\begin{itemize}
+    \item Graph coloring approach
+    \item Interference graph: nodes = variables, edge = live at same time
+    \item k-colorable $\Rightarrow$ can use k registers
+\end{itemize}
+
+\subsection{Runtime Environments}
+
+\textbf{Memory Organization:}
+\begin{enumerate}
+    \item \textbf{Code Area:} Stores instructions
+    \item \textbf{Static Data:} Global variables
+    \item \textbf{Stack:} Function calls, local variables
+    \item \textbf{Heap:} Dynamic memory allocation
+\end{enumerate}
+
+\textbf{Activation Record (Stack Frame):}
+\begin{itemize}
+    \item Return address
+    \item Parameters
+    \item Local variables
+    \item Saved registers
+    \item Control link (previous frame pointer)
+    \item Access link (for nested functions)
+\end{itemize}
+
+%==============================================================================
+\section{Operating Systems}
+
+\subsection{Process Management}
+
+\subsubsection{Process}
+
+\begin{defbox}
+\textbf{Process:} Program in execution.
+\end{defbox}
+
+\textbf{Process States:}
+\begin{enumerate}
+    \item \textbf{New:} Being created
+    \item \textbf{Ready:} Waiting for CPU
+    \item \textbf{Running:} Executing
+    \item \textbf{Waiting:} Waiting for I/O or event
+    \item \textbf{Terminated:} Finished execution
+\end{enumerate}
+
+\textbf{Process Control Block (PCB):}
+\begin{itemize}
+    \item Process ID
+    \item Process state
+    \item Program counter
+    \item CPU registers
+    \item Memory management info
+    \item I/O status
+    \item Scheduling information
+\end{itemize}
+
+\subsubsection{CPU Scheduling}
+
+\textbf{Scheduling Criteria:}
+\begin{itemize}
+    \item \textbf{CPU Utilization:} Keep CPU busy
+    \item \textbf{Throughput:} Processes completed per unit time
+    \item \textbf{Turnaround Time:} Time from submission to completion
+    \item \textbf{Waiting Time:} Time spent in ready queue
+    \item \textbf{Response Time:} Time from submission to first response
+\end{itemize}
+
+\textbf{Scheduling Algorithms:}
+
+\textbf{1. First-Come First-Served (FCFS):}
+\begin{itemize}
+    \item Non-preemptive
+    \item Simple but convoy effect
+    \item Average waiting time often long
+\end{itemize}
+
+\textbf{2. Shortest Job First (SJF):}
+\begin{itemize}
+    \item Schedule process with smallest CPU burst
+    \item Optimal for minimum average waiting time
+    \item Can be preemptive (SRTF) or non-preemptive
+    \item Problem: Starvation, predicting burst time
+\end{itemize}
+
+\textbf{3. Priority Scheduling:}
+\begin{itemize}
+    \item Each process has priority
+    \item Problem: Starvation
+    \item Solution: Aging (increase priority over time)
+\end{itemize}
+
+\textbf{4. Round Robin (RR):}
+\begin{itemize}
+    \item Preemptive, time quantum
+    \item Fair, no starvation
+    \item Performance depends on time quantum
+\end{itemize}
+
+\textbf{5. Multilevel Queue:}
+\begin{itemize}
+    \item Multiple queues with different priorities
+    \item Each queue can have different algorithm
+\end{itemize}
+
+\textbf{6. Multilevel Feedback Queue:}
+\begin{itemize}
+    \item Processes can move between queues
+    \item Aging implemented
+    \item Most general and complex
+\end{itemize}
+
+\subsubsection{Process Synchronization}
+
+\textbf{Critical Section Problem:}
+\begin{itemize}
+    \item \textbf{Mutual Exclusion:} Only one process in critical section
+    \item \textbf{Progress:} Selection cannot be postponed indefinitely
+    \item \textbf{Bounded Waiting:} Limit on waiting time
+\end{itemize}
+
+\textbf{Solutions:}
+
+\textbf{1. Peterson's Solution:}
+\begin{itemize}
+    \item Software solution for 2 processes
+    \item Uses turn and flag variables
+\end{itemize}
+
+\textbf{2. Semaphores:}
+\begin{defbox}
+\textbf{Semaphore:} Integer variable with two atomic operations:
+\begin{itemize}
+    \item \textbf{wait(S) or P(S):} while $S \leq 0$ do nothing; $S = S - 1$
+    \item \textbf{signal(S) or V(S):} $S = S + 1$
+\end{itemize}
+\end{defbox}
+
+\textbf{Types:}
+\begin{itemize}
+    \item \textbf{Binary Semaphore:} 0 or 1 (mutex)
+    \item \textbf{Counting Semaphore:} Any integer
+\end{itemize}
+
+\textbf{3. Monitors:}
+\begin{itemize}
+    \item High-level synchronization construct
+    \item Only one process active in monitor at a time
+    \item Condition variables for waiting
+\end{itemize}
+
+\subsubsection{Deadlocks}
+
+\begin{defbox}
+\textbf{Deadlock:} Set of processes where each is waiting for resource held by another in the set.
+\end{defbox}
+
+\textbf{Necessary Conditions (all must hold):}
+\begin{enumerate}
+    \item \textbf{Mutual Exclusion:} Resources cannot be shared
+    \item \textbf{Hold and Wait:} Process holds resources while waiting for more
+    \item \textbf{No Preemption:} Resources cannot be forcibly taken
+    \item \textbf{Circular Wait:} Circular chain of waiting processes
+\end{enumerate}
+
+\textbf{Handling Deadlocks:}
+
+\textbf{1. Prevention:} Ensure at least one necessary condition cannot hold
+\begin{itemize}
+    \item Eliminate mutual exclusion (not always possible)
+    \item Eliminate hold and wait (request all resources at once)
+    \item Allow preemption
+    \item Eliminate circular wait (order resources)
+\end{itemize}
+
+\textbf{2. Avoidance:} Use algorithm to avoid unsafe states
+\begin{itemize}
+    \item \textbf{Banker's Algorithm:}
+    \begin{itemize}
+        \item Keep system in safe state
+        \item Safe state: sequence exists where all processes can complete
+        \item Check if granting request keeps system safe
+    \end{itemize}
+\end{itemize}
+
+\textbf{3. Detection and Recovery:}
+\begin{itemize}
+    \item Allow deadlocks
+    \item Detect using resource allocation graph
+    \item Recovery: Kill processes or preempt resources
+\end{itemize}
+
+\textbf{4. Ignorance:} Ostrich algorithm (used by many systems)
+
+\subsection{Memory Management}
+
+\subsubsection{Contiguous Allocation}
+
+\textbf{Allocation Strategies:}
+\begin{itemize}
+    \item \textbf{First Fit:} Allocate first hole big enough
+    \item \textbf{Best Fit:} Allocate smallest hole big enough
+    \item \textbf{Worst Fit:} Allocate largest hole
+\end{itemize}
+
+\textbf{Fragmentation:}
+\begin{itemize}
+    \item \textbf{External:} Free memory divided into small blocks
+    \item \textbf{Internal:} Allocated memory larger than requested
+\end{itemize}
+
+\subsubsection{Paging}
+
+\begin{defbox}
+\textbf{Paging:} Divide physical memory into fixed-size frames and logical memory into pages of same size.
+\end{defbox}
+
+\textbf{Address Translation:}
+\[
+    \text{Physical Address} = \text{Frame Number} \times \text{Page Size} + \text{Offset}
+\]
+
+\textbf{Page Table:}
+\begin{itemize}
+    \item Maps page number to frame number
+    \item Each process has page table
+    \item Stored in memory
+\end{itemize}
+
+\textbf{Translation Lookaside Buffer (TLB):}
+\begin{itemize}
+    \item Cache for page table
+    \item Fast associative memory
+    \item Contains recently used page-frame pairs
+\end{itemize}
+
+\begin{formulabox}
+\textbf{Effective Access Time:}
+\[
+    EAT = \alpha \times (T + M) + (1-\alpha) \times (T + 2M)
+\]
+where $\alpha$ = TLB hit ratio, T = TLB access time, M = memory access time
+\end{formulabox}
+
+\subsubsection{Segmentation}
+
+\begin{defbox}
+\textbf{Segmentation:} Divide program into logical segments (code, data, stack, etc.).
+\end{defbox}
+
+\textbf{Segment Table:}
+\begin{itemize}
+    \item Base: Starting physical address
+    \item Limit: Length of segment
+\end{itemize}
+
+\textbf{Paging vs Segmentation:}
+\begin{itemize}
+    \item Paging: Fixed size, invisible to user
+    \item Segmentation: Variable size, logical division
+\end{itemize}
+
+\subsubsection{Virtual Memory}
+
+\begin{defbox}
+\textbf{Virtual Memory:} Technique allowing execution of processes not completely in memory.
+\end{defbox}
+
+\textbf{Benefits:}
+\begin{itemize}
+    \item Program larger than physical memory
+    \item More processes in memory
+    \item Less I/O for loading
+\end{itemize}
+
+\textbf{Demand Paging:}
+\begin{itemize}
+    \item Load page only when needed
+    \item Valid/invalid bit in page table
+    \item Page fault: required page not in memory
+\end{itemize}
+
+\textbf{Page Replacement Algorithms:} (Covered earlier in COA section)
+
+\textbf{Thrashing:}
+\begin{defbox}
+\textbf{Thrashing:} Process spends more time paging than executing.
+\end{defbox}
+
+\textbf{Causes:}
+\begin{itemize}
+    \item Too many processes
+    \item Insufficient memory
+\end{itemize}
+
+\textbf{Solutions:}
+\begin{itemize}
+    \item Working set model
+    \item Page fault frequency
+    \item Decrease degree of multiprogramming
+\end{itemize}
+
+\subsection{File Systems}
+
+\subsubsection{File Concepts}
+
+\begin{defbox}
+\textbf{File:} Named collection of related information stored on secondary storage.
+\end{defbox}
+
+\textbf{File Attributes:}
+\begin{itemize}
+    \item Name, type, location
+    \item Size, protection
+    \item Time, date, user ID
+\end{itemize}
+
+\textbf{File Operations:}
+\begin{itemize}
+    \item Create, open, read, write
+    \item Seek, close, delete
+\end{itemize}
+
+\subsubsection{Directory Structure}
+
+\textbf{Types:}
+\begin{enumerate}
+    \item \textbf{Single-Level:} All files in one directory
+    \item \textbf{Two-Level:} Separate directory for each user
+    \item \textbf{Tree-Structured:} Hierarchical
+    \item \textbf{Acyclic Graph:} Allows sharing (hard links)
+    \item \textbf{General Graph:} Allows cycles (symbolic links)
+\end{enumerate}
+
+\subsubsection{File Allocation Methods}
+
+\textbf{1. Contiguous Allocation:}
+\begin{itemize}
+    \item File occupies consecutive blocks
+    \item Fast sequential access
+    \item External fragmentation
+\end{itemize}
+
+\textbf{2. Linked Allocation:}
+\begin{itemize}
+    \item Each block points to next
+    \item No external fragmentation
+    \item Slow random access
+    \item Example: FAT (File Allocation Table)
+\end{itemize}
+
+\textbf{3. Indexed Allocation:}
+\begin{itemize}
+    \item Index block contains pointers to data blocks
+    \item Direct access
+    \item Overhead of index block
+    \item Example: UNIX inode
+\end{itemize}
+
+\subsubsection{Free Space Management}
+
+\textbf{Methods:}
+\begin{enumerate}
+    \item \textbf{Bit Vector:} Each bit represents block (0=free, 1=allocated)
+    \item \textbf{Linked List:} Link all free blocks
+    \item \textbf{Grouping:} Store addresses of n free blocks in first free block
+    \item \textbf{Counting:} Store starting address and count of contiguous free blocks
+\end{enumerate}
+
+\subsection{Disk Scheduling}
+
+\textbf{Disk Access Time:}
+\[
+    \text{Access Time} = \text{Seek Time} + \text{Rotational Latency} + \text{Transfer Time}
+\]
+
+\textbf{Scheduling Algorithms:}
+
+\textbf{1. FCFS:} Serve in order of arrival
+
+\textbf{2. SSTF (Shortest Seek Time First):}
+\begin{itemize}
+    \item Service request closest to current head position
+    \item May cause starvation
+\end{itemize}
+
+\textbf{3. SCAN (Elevator):}
+\begin{itemize}
+    \item Move head in one direction, service requests
+    \item Reverse at end
+\end{itemize}
+
+\textbf{4. C-SCAN (Circular SCAN):}
+\begin{itemize}
+    \item Move in one direction only
+    \item Jump to beginning at end
+\end{itemize}
+
+\textbf{5. LOOK and C-LOOK:}
+\begin{itemize}
+    \item Like SCAN/C-SCAN but reverse at last request, not end of disk
+\end{itemize}
+
+%==============================================================================
+\section{Database Management Systems}
+
+\subsection{Database Concepts}
+
+\begin{defbox}
+\textbf{Database:} Organized collection of interrelated data.
+\end{defbox}
+
+\begin{defbox}
+\textbf{DBMS:} Software to create, maintain, and access databases.
+\end{defbox}
+
+\textbf{Advantages:}
+\begin{itemize}
+    \item Data independence
+    \item Efficient data access
+    \item Data integrity and security
+    \item Concurrent access
+    \item Crash recovery
+\end{itemize}
+
+\subsection{Database Models}
+
+\textbf{1. Hierarchical:} Tree structure
+
+\textbf{2. Network:} Graph structure
+
+\textbf{3. Relational:} Tables (most common)
+
+\textbf{4. Object-Oriented:} Objects with inheritance
+
+\subsection{Relational Model}
+
+\begin{defbox}
+\textbf{Relation:} Table with rows (tuples) and columns (attributes).
+\end{defbox}
+
+\textbf{Keys:}
+\begin{itemize}
+    \item \textbf{Super Key:} Set of attributes uniquely identifying tuple
+    \item \textbf{Candidate Key:} Minimal super key
+    \item \textbf{Primary Key:} Chosen candidate key
+    \item \textbf{Foreign Key:} References primary key of another relation
+\end{itemize}
+
+\textbf{Integrity Constraints:}
+\begin{itemize}
+    \item \textbf{Entity Integrity:} Primary key cannot be NULL
+    \item \textbf{Referential Integrity:} Foreign key must reference existing primary key
+    \item \textbf{Domain Constraint:} Attribute values from domain
+\end{itemize}
+
+\subsection{Relational Algebra}
+
+\textbf{Unary Operations:}
+\begin{itemize}
+    \item \textbf{Selection ($\sigma$):} Select rows satisfying condition
+    \item \textbf{Projection ($\pi$):} Select specific columns
+    \item \textbf{Rename ($\rho$):} Rename relation/attributes
+\end{itemize}
+
+\textbf{Binary Operations:}
+\begin{itemize}
+    \item \textbf{Union ($\cup$):} Combine tuples from two relations
+    \item \textbf{Intersection ($\cap$):} Common tuples
+    \item \textbf{Difference ($-$):} Tuples in first but not second
+    \item \textbf{Cartesian Product ($\times$):} All combinations
+    \item \textbf{Join ($\bowtie$):} Combine relations based on condition
+    \begin{itemize}
+        \item Natural Join: Join on common attributes
+        \item Theta Join: Join with condition
+        \item Equi Join: Theta join with equality
+        \item Outer Join: Include unmatched tuples (left, right, full)
+    \end{itemize}
+    \item \textbf{Division ($\div$):} Find tuples related to all tuples in other relation
+\end{itemize}
+
+\subsection{SQL}
+
+\textbf{Data Definition Language (DDL):}
+\begin{itemize}
+    \item CREATE TABLE
+    \item ALTER TABLE
+    \item DROP TABLE
+    \item CREATE INDEX
+\end{itemize}
+
+\textbf{Data Manipulation Language (DML):}
+\begin{itemize}
+    \item SELECT (query)
+    \item INSERT
+    \item UPDATE
+    \item DELETE
+\end{itemize}
+
+\textbf{SELECT Statement:}
+\begin{verbatim}
+SELECT [DISTINCT] column_list
+FROM table_list
+WHERE condition
+GROUP BY columns
+HAVING group_condition
+ORDER BY columns [ASC|DESC]
+\end{verbatim}
+
+\textbf{Aggregate Functions:}
+\begin{itemize}
+    \item COUNT, SUM, AVG, MAX, MIN
+\end{itemize}
+
+\textbf{Nested Queries:}
+\begin{itemize}
+    \item IN, NOT IN
+    \item EXISTS, NOT EXISTS
+    \item ANY, ALL
+\end{itemize}
+
+\textbf{Joins in SQL:}
+\begin{itemize}
+    \item INNER JOIN
+    \item LEFT OUTER JOIN
+    \item RIGHT OUTER JOIN
+    \item FULL OUTER JOIN
+    \item CROSS JOIN
+\end{itemize}
+
+\subsection{Normalization}
+
+\begin{defbox}
+\textbf{Normalization:} Process of organizing data to reduce redundancy and improve integrity.
+\end{defbox}
+
+\textbf{Functional Dependency:} $X \rightarrow Y$ means X determines Y
+
+\textbf{Normal Forms:}
+
+\textbf{1. First Normal Form (1NF):}
+\begin{itemize}
+    \item Atomic values (no multi-valued attributes)
+    \item No repeating groups
+\end{itemize}
+
+\textbf{2. Second Normal Form (2NF):}
+\begin{itemize}
+    \item In 1NF
+    \item No partial dependency (non-prime attribute depends on part of candidate key)
+\end{itemize}
+
+\textbf{3. Third Normal Form (3NF):}
+\begin{itemize}
+    \item In 2NF
+    \item No transitive dependency (non-prime attribute depends on another non-prime attribute)
+\end{itemize}
+
+\textbf{Boyce-Codd Normal Form (BCNF):}
+\begin{itemize}
+    \item For every functional dependency $X \rightarrow Y$, X is a super key
+    \item Stronger than 3NF
+\end{itemize}
+
+\textbf{4. Fourth Normal Form (4NF):}
+\begin{itemize}
+    \item In BCNF
+    \item No multi-valued dependencies
+\end{itemize}
+
+\subsection{Transactions}
+
+\begin{defbox}
+\textbf{Transaction:} Logical unit of work (sequence of operations).
+\end{defbox}
+
+\textbf{ACID Properties:}
+\begin{itemize}
+    \item \textbf{Atomicity:} All or nothing
+    \item \textbf{Consistency:} Database remains in consistent state
+    \item \textbf{Isolation:} Concurrent transactions don't interfere
+    \item \textbf{Durability:} Committed changes persist
+\end{itemize}
+
+\textbf{Transaction States:}
+\begin{itemize}
+    \item Active
+    \item Partially Committed
+    \item Committed
+    \item Failed
+    \item Aborted
+\end{itemize}
+
+\subsection{Concurrency Control}
+
+\textbf{Problems:}
+\begin{itemize}
+    \item \textbf{Lost Update:} One transaction overwrites another's update
+    \item \textbf{Dirty Read:} Read uncommitted data
+    \item \textbf{Unrepeatable Read:} Different reads give different results
+    \item \textbf{Phantom Read:} New rows appear in subsequent reads
+\end{itemize}
+
+\textbf{Serializability:}
+\begin{defbox}
+\textbf{Serial Schedule:} Transactions execute one after another.
+\end{defbox}
+
+\begin{defbox}
+\textbf{Serializable Schedule:} Equivalent to some serial schedule.
+\end{defbox}
+
+\textbf{Conflict Serializability:}
+\begin{itemize}
+    \item Two operations conflict if from different transactions, on same item, at least one is write
+    \item Schedule is conflict serializable if can be transformed to serial schedule by swapping non-conflicting operations
+    \item Test: Create precedence graph, serializable if acyclic
+\end{itemize}
+
+\textbf{Locking Protocols:}
+
+\textbf{1. Two-Phase Locking (2PL):}
+\begin{itemize}
+    \item \textbf{Growing Phase:} Acquire locks
+    \item \textbf{Shrinking Phase:} Release locks
+    \item Guarantees conflict serializability
+    \item May cause deadlocks
+\end{itemize}
+
+\textbf{2. Strict 2PL:}
+\begin{itemize}
+    \item Hold all exclusive locks until commit
+    \item Prevents cascading aborts
+\end{itemize}
+
+\textbf{3. Timestamp Ordering:}
+\begin{itemize}
+    \item Each transaction has timestamp
+    \item Older transaction has priority
+    \item No deadlocks but may have starvation
+\end{itemize}
+
+\subsection{Indexing}
+
+\begin{defbox}
+\textbf{Index:} Data structure to speed up data retrieval.
+\end{defbox}
+
+\textbf{Types:}
+
+\textbf{1. Primary Index:}
+\begin{itemize}
+    \item On primary key
+    \item Ordered file
+\end{itemize}
+
+\textbf{2. Clustering Index:}
+\begin{itemize}
+    \item On non-key field
+    \item Records with same value clustered
+\end{itemize}
+
+\textbf{3. Secondary Index:}
+\begin{itemize}
+    \item On any field
+    \item Dense index (entry for every record)
+\end{itemize}
+
+\textbf{B-Tree and B+-Tree:}
+\begin{itemize}
+    \item Balanced tree structures
+    \item B+-Tree: All data in leaves, internal nodes only keys
+    \item Efficient for range queries
+    \item Most common in databases
+\end{itemize}
+
+\textbf{Hashing:}
+\begin{itemize}
+    \item Direct access using hash function
+    \item Good for equality queries
+    \item Not good for range queries
+\end{itemize}
+
+%==============================================================================
+\section{Computer Networks}
+
+\subsection{OSI Model}
+
+\begin{defbox}
+\textbf{OSI Model:} 7-layer reference model for network communication.
+\end{defbox}
+
+\textbf{Layers (top to bottom):}
+\begin{enumerate}
+    \item \textbf{Application:} User interface (HTTP, FTP, SMTP, DNS)
+    \item \textbf{Presentation:} Data formatting, encryption (SSL/TLS)
+    \item \textbf{Session:} Manages sessions between applications
+    \item \textbf{Transport:} End-to-end communication (TCP, UDP)
+    \item \textbf{Network:} Routing, logical addressing (IP)
+    \item \textbf{Data Link:} Frame transmission, error detection (Ethernet, MAC)
+    \item \textbf{Physical:} Physical transmission (cables, signals)
+\end{enumerate}
+
+\textbf{TCP/IP Model:}
+\begin{enumerate}
+    \item Application (combines OSI 5-7)
+    \item Transport
+    \item Internet (Network)
+    \item Network Access (combines OSI 1-2)
+\end{enumerate}
+
+\subsection{Physical Layer}
+
+\textbf{Transmission Media:}
+\begin{itemize}
+    \item \textbf{Guided:} Twisted pair, coaxial cable, fiber optic
+    \item \textbf{Unguided:} Radio waves, microwaves, infrared
+\end{itemize}
+
+\textbf{Multiplexing:}
+\begin{itemize}
+    \item \textbf{FDM:} Frequency Division
+    \item \textbf{TDM:} Time Division
+    \item \textbf{WDM:} Wavelength Division
+    \item \textbf{CDM:} Code Division
+\end{itemize}
+
+\subsection{Data Link Layer}
+
+\textbf{Functions:}
+\begin{itemize}
+    \item Framing
+    \item Physical addressing (MAC)
+    \item Flow control
+    \item Error control
+    \item Access control
+\end{itemize}
+
+\textbf{Error Detection:}
+\begin{itemize}
+    \item \textbf{Parity Check:} Single bit parity
+    \item \textbf{Checksum:} Sum of data segments
+    \item \textbf{CRC (Cyclic Redundancy Check):} Polynomial division
+\end{itemize}
+
+\textbf{Flow Control:}
+\begin{itemize}
+    \item \textbf{Stop-and-Wait:} Send one frame, wait for ACK
+    \item \textbf{Sliding Window:} Send multiple frames before ACK
+\end{itemize}
+
+\textbf{ARQ Protocols:}
+\begin{itemize}
+    \item \textbf{Stop-and-Wait ARQ}
+    \item \textbf{Go-Back-N:} Retransmit all frames from error
+    \item \textbf{Selective Repeat:} Retransmit only error frames
+\end{itemize}
+
+\textbf{Multiple Access Protocols:}
+\begin{itemize}
+    \item \textbf{ALOHA:} Pure and Slotted
+    \item \textbf{CSMA:} Carrier Sense Multiple Access
+    \item \textbf{CSMA/CD:} With Collision Detection (Ethernet)
+    \item \textbf{CSMA/CA:} With Collision Avoidance (WiFi)
+\end{itemize}
+
+\textbf{Ethernet:}
+\begin{itemize}
+    \item MAC address: 48 bits
+    \item Frame format: Preamble, destination, source, type, data, FCS
+    \item CSMA/CD for access control
+\end{itemize}
+
+\subsection{Network Layer}
+
+\textbf{Functions:}
+\begin{itemize}
+    \item Routing
+    \item Logical addressing
+    \item Packet forwarding
+    \item Fragmentation
+\end{itemize}
+
+\subsubsection{IP Addressing}
+
+\textbf{IPv4:}
+\begin{itemize}
+    \item 32-bit address
+    \item Dotted decimal notation (e.g., 192.168.1.1)
+    \item Classes A, B, C, D, E
+\end{itemize}
+
+\textbf{Classful Addressing:}
+\begin{itemize}
+    \item \textbf{Class A:} 0.0.0.0 to 127.255.255.255 (first bit 0)
+    \item \textbf{Class B:} 128.0.0.0 to 191.255.255.255 (first bits 10)
+    \item \textbf{Class C:} 192.0.0.0 to 223.255.255.255 (first bits 110)
+    \item \textbf{Class D:} Multicast (first bits 1110)
+    \item \textbf{Class E:} Reserved (first bits 1111)
+\end{itemize}
+
+\textbf{Subnetting:}
+\begin{itemize}
+    \item Divide network into subnetworks
+    \item Subnet mask identifies network and host parts
+    \item CIDR notation: IP/prefix length (e.g., 192.168.1.0/24)
+\end{itemize}
+
+\textbf{IPv6:}
+\begin{itemize}
+    \item 128-bit address
+    \item Hexadecimal notation
+    \item Larger address space
+    \item Built-in security (IPSec)
+\end{itemize}
+
+\subsubsection{Routing Algorithms}
+
+\textbf{Classification:}
+\begin{itemize}
+    \item \textbf{Static vs Dynamic}
+    \item \textbf{Distance Vector vs Link State}
+    \item \textbf{Interior vs Exterior}
+\end{itemize}
+
+\textbf{Distance Vector:}
+\begin{itemize}
+    \item Each router maintains distance table
+    \item Periodic updates to neighbors
+    \item Example: RIP (Routing Information Protocol)
+    \item Uses Bellman-Ford algorithm
+    \item Problem: Count-to-infinity
+\end{itemize}
+
+\textbf{Link State:}
+\begin{itemize}
+    \item Each router has complete network topology
+    \item Flood link state information
+    \item Example: OSPF (Open Shortest Path First)
+    \item Uses Dijkstra's algorithm
+\end{itemize}
+
+\textbf{BGP (Border Gateway Protocol):}
+\begin{itemize}
+    \item Exterior gateway protocol
+    \item Path vector protocol
+    \item Routes between autonomous systems
+\end{itemize}
+
+\subsubsection{Network Layer Protocols}
+
+\textbf{IP (Internet Protocol):}
+\begin{itemize}
+    \item Connectionless, unreliable
+    \item Best effort delivery
+    \item Fragmentation support
+\end{itemize}
+
+\textbf{ICMP (Internet Control Message Protocol):}
+\begin{itemize}
+    \item Error reporting and query
+    \item Used by ping and traceroute
+\end{itemize}
+
+\textbf{ARP (Address Resolution Protocol):}
+\begin{itemize}
+    \item Maps IP to MAC address
+    \item Broadcast ARP request
+\end{itemize}
+
+\textbf{DHCP (Dynamic Host Configuration Protocol):}
+\begin{itemize}
+    \item Automatically assign IP addresses
+    \item Discover, Offer, Request, Acknowledge
+\end{itemize}
+
+\textbf{NAT (Network Address Translation):}
+\begin{itemize}
+    \item Translate private to public IP
+    \item Conserve IP addresses
+    \item Provides basic security
+\end{itemize}
+
+\subsection{Transport Layer}
+
+\textbf{Functions:}
+\begin{itemize}
+    \item End-to-end communication
+    \item Segmentation and reassembly
+    \item Port addressing
+    \item Connection control
+    \item Flow and error control
+\end{itemize}
+
+\subsubsection{TCP (Transmission Control Protocol)}
+
+\textbf{Characteristics:}
+\begin{itemize}
+    \item Connection-oriented
+    \item Reliable
+    \item Full-duplex
+    \item Stream-oriented
+    \item Flow and error control
+\end{itemize}
+
+\textbf{TCP Header:}
+\begin{itemize}
+    \item Source/Destination Port (16 bits each)
+    \item Sequence Number (32 bits)
+    \item Acknowledgment Number (32 bits)
+    \item Flags: SYN, ACK, FIN, RST, PSH, URG
+    \item Window Size
+    \item Checksum
+\end{itemize}
+
+\textbf{Connection Establishment (3-Way Handshake):}
+\begin{enumerate}
+    \item Client: SYN
+    \item Server: SYN + ACK
+    \item Client: ACK
+\end{enumerate}
+
+\textbf{Connection Termination (4-Way):}
+\begin{enumerate}
+    \item Client: FIN
+    \item Server: ACK
+    \item Server: FIN
+    \item Client: ACK
+\end{enumerate}
+
+\textbf{Flow Control:}
+\begin{itemize}
+    \item Sliding window protocol
+    \item Receiver advertises window size
+\end{itemize}
+
+\textbf{Congestion Control:}
+\begin{itemize}
+    \item Slow Start
+    \item Congestion Avoidance
+    \item Fast Retransmit
+    \item Fast Recovery
+\end{itemize}
+
+\subsubsection{UDP (User Datagram Protocol)}
+
+\textbf{Characteristics:}
+\begin{itemize}
+    \item Connectionless
+    \item Unreliable
+    \item Lightweight
+    \item Fast
+    \item Message-oriented
+\end{itemize}
+
+\textbf{UDP Header (8 bytes):}
+\begin{itemize}
+    \item Source Port (16 bits)
+    \item Destination Port (16 bits)
+    \item Length (16 bits)
+    \item Checksum (16 bits)
+\end{itemize}
+
+\textbf{Use Cases:}
+\begin{itemize}
+    \item DNS
+    \item DHCP
+    \item Streaming media
+    \item Online gaming
+    \item VoIP
+\end{itemize}
+
+\subsection{Application Layer}
+
+\subsubsection{DNS (Domain Name System)}
+
+\textbf{Function:} Translate domain names to IP addresses
+
+\textbf{Hierarchy:}
+\begin{itemize}
+    \item Root servers
+    \item Top-level domain (TLD) servers (.com, .org, etc.)
+    \item Authoritative servers
+\end{itemize}
+
+\textbf{Query Types:}
+\begin{itemize}
+    \item Recursive: Server resolves completely
+    \item Iterative: Server returns referral
+\end{itemize}
+
+\subsubsection{HTTP (Hypertext Transfer Protocol)}
+
+\textbf{Characteristics:}
+\begin{itemize}
+    \item Stateless
+    \item Application layer protocol
+    \item Uses TCP (port 80)
+\end{itemize}
+
+\textbf{Methods:}
+\begin{itemize}
+    \item GET: Retrieve resource
+    \item POST: Submit data
+    \item PUT: Update resource
+    \item DELETE: Delete resource
+    \item HEAD: Get headers only
+\end{itemize}
+
+\textbf{Status Codes:}
+\begin{itemize}
+    \item 1xx: Informational
+    \item 2xx: Success (200 OK)
+    \item 3xx: Redirection (301 Moved, 304 Not Modified)
+    \item 4xx: Client Error (400 Bad Request, 404 Not Found)
+    \item 5xx: Server Error (500 Internal Server Error)
+\end{itemize}
+
+\textbf{HTTP/1.1 vs HTTP/2:}
+\begin{itemize}
+    \item HTTP/2: Binary protocol, multiplexing, server push
+\end{itemize}
+
+\textbf{HTTPS:}
+\begin{itemize}
+    \item HTTP over SSL/TLS
+    \item Encrypted communication
+    \item Port 443
+\end{itemize}
+
+\subsubsection{Email Protocols}
+
+\textbf{SMTP (Simple Mail Transfer Protocol):}
+\begin{itemize}
+    \item Sending email
+    \item Port 25
+    \item Push protocol
+\end{itemize}
+
+\textbf{POP3 (Post Office Protocol):}
+\begin{itemize}
+    \item Download and delete from server
+    \item Port 110
+\end{itemize}
+
+\textbf{IMAP (Internet Message Access Protocol):}
+\begin{itemize}
+    \item Access email on server
+    \item Port 143
+    \item Supports folders
+\end{itemize}
+
+\subsubsection{FTP (File Transfer Protocol)}
+
+\textbf{Characteristics:}
+\begin{itemize}
+    \item Transfer files
+    \item Uses two connections: control (port 21) and data (port 20)
+    \item Active vs Passive mode
+\end{itemize}
+
+\subsection{Network Security}
+
+\textbf{Cryptography:}
+\begin{itemize}
+    \item \textbf{Symmetric:} Same key for encryption and decryption (DES, AES)
+    \item \textbf{Asymmetric:} Public and private keys (RSA, ECC)
+\end{itemize}
+
+\textbf{Digital Signatures:}
+\begin{itemize}
+    \item Ensure authenticity and non-repudiation
+    \item Hash message, encrypt with private key
+    \item Verify with public key
+\end{itemize}
+
+\textbf{Certificates:}
+\begin{itemize}
+    \item Issued by Certificate Authority (CA)
+    \item Contains public key and identity
+    \item X.509 standard
+\end{itemize}
+
+\textbf{Firewalls:}
+\begin{itemize}
+    \item Filter network traffic
+    \item \textbf{Packet Filtering:} Based on headers
+    \item \textbf{Stateful:} Track connections
+    \item \textbf{Application Layer:} Deep packet inspection
+\end{itemize}
+
+\textbf{VPN (Virtual Private Network):}
+\begin{itemize}
+    \item Create secure tunnel over public network
+    \item Encryption and authentication
+\end{itemize}
+
+%==============================================================================
+
+\section{Tips for GATE Preparation}
+
+\begin{notebox}
+\textbf{Study Strategy:}
+\begin{itemize}
+    \item Understand concepts, don't just memorize
+    \item Practice previous year questions
+    \item Take mock tests regularly
+    \item Focus on fundamentals first
+    \item Make short notes for revision
+    \item Solve problems from standard textbooks
+    \item Time management is crucial
+\end{itemize}
+\end{notebox}
+
+\begin{notebox}
+\textbf{Subject-wise Priority:}
+\begin{enumerate}
+    \item High Priority: Data Structures, Algorithms, Operating Systems, DBMS, Computer Networks
+    \item Medium Priority: Theory of Computation, Compiler Design, Computer Organization
+    \item Lower Priority (but important): Digital Logic, Engineering Mathematics
+\end{enumerate}
+\end{notebox}
+
+\begin{notebox}
+\textbf{Important Formulas Summary:}
+\begin{itemize}
+    \item Time complexities of all algorithms
+    \item Cache/TLB access time formulas
+    \item Pipeline speedup calculations
+    \item Page replacement algorithms
+    \item Network layer calculations (IP, subnetting)
+    \item Probability and combinatorics formulas
+    \item Graph properties (Euler's, Handshaking lemma)
+\end{itemize}
+\end{notebox}
+
+\textbf{Best wishes for your GATE preparation!}
+
+\end{document}
